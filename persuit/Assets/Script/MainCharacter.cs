@@ -9,67 +9,88 @@ public class MainCharacter : Singleton<MainCharacter> {
     public float horForce = 100f;
     public float moveSpeed = 5.0f;
     Rigidbody2D mRigidbody = null;
-    public HeaderProto.PCharState mCurState = HeaderProto.PCharState.PCharStateIdle;
+    StateManager mStateManager = null;
+    Animator mAnimator = null;
+
+    int mMoveDir = 0;
 	void Start () {
         moveSpeed = 5.0f;
-
-
+        mStateManager = new StateManager();
+        mAnimator = GameObject.Find("rendernode").GetComponent<Animator>();
 
         mRigidbody = GetComponent<Rigidbody2D>();
-        InputEventControlller.Ins.OnUp += () =>
+        // 跳
+        InputEventControlller.Ins.OnUpArrowDown += () =>
         {
             mRigidbody.velocity = Vector2.zero;
-            if (mCurState == HeaderProto.PCharState.PCharStateRun)
+            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
             {
                 mRigidbody.AddForce((Vector2.up*2 + new Vector2(transform.right.x, transform.right.y)).normalized * upForce, ForceMode2D.Force);
             }
             else {
                 mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
             }
-            mCurState = HeaderProto.PCharState.PCharStateJump;
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJump);
         };
+        // left
         InputEventControlller.Ins.OnLeftDown += () =>
         {
+            mMoveDir = 1;
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             mRigidbody.velocity = Vector2.zero;
-            if (mCurState == HeaderProto.PCharState.PCharStateJump) {
+            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJump)
+            {
                 mRigidbody.AddForce(Vector2.left * horForce, ForceMode2D.Force);
             }
             else {
-                mCurState = HeaderProto.PCharState.PCharStateRun;
+                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         };
+        // right
         InputEventControlller.Ins.OnRightDown += () =>
         {
+            mMoveDir = 1;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             mRigidbody.velocity = Vector2.zero;
-            if (mCurState == HeaderProto.PCharState.PCharStateJump)
+            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJump)
             {
                 mRigidbody.AddForce(Vector2.right * horForce, ForceMode2D.Force);
             }
             else
             {
-                mCurState = HeaderProto.PCharState.PCharStateRun;
+                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         };
+
         InputEventControlller.Ins.OnLeftUp += () =>
         {
-            mCurState = HeaderProto.PCharState.PCharStateIdle;
+            mMoveDir = 0;
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
         InputEventControlller.Ins.OnRightUp += () =>
         {
-            mCurState = HeaderProto.PCharState.PCharStateIdle;
+            mMoveDir = 0;
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
+        };
+        InputEventControlller.Ins.OnUpArrowUp += () =>
+        {
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (mCurState == HeaderProto.PCharState.PCharStateRun) {
-            transform.Translate(new Vector2(1,0) * Time.deltaTime * moveSpeed);
+        transform.Translate(new Vector2(1,0) * Time.deltaTime * moveSpeed * mMoveDir);
+        if(transform.position.x >6){
+            psPlatformManager.Ins.isFrontLayerMoving = true;
         }
 	}
 
     void OnCollisionEnter(Collision collision) {
-        mCurState = HeaderProto.PCharState.PCharStateIdle;
+    }
+
+    // 0:toIdle 1:toRun 2:toJump
+    public void SetAnimationSate(int val) {
+        mAnimator.SetInteger("AnimState", val);
     }
 }

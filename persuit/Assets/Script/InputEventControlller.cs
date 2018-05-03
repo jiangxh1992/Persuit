@@ -10,7 +10,8 @@ public class InputEventControlller : Singleton<InputEventControlller> {
     public InputInputDelegate OnRightDown;
     public InputInputDelegate OnLeftUp;
     public InputInputDelegate OnRightUp;
-    public InputInputDelegate OnUp;
+    public InputInputDelegate OnUpArrowDown;
+    public InputInputDelegate OnUpArrowUp;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +35,11 @@ public class InputEventControlller : Singleton<InputEventControlller> {
             this.OnRightUp();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            this.OnUp();
+            this.OnUpArrowDown();
+        }
+        else if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            this.OnUpArrowUp();
         }
 	}
 }
