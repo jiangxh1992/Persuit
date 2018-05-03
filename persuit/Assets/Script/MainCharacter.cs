@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCharacter : Singleton<MainCharacter> {
+public class MainCharacter : Singleton<MainCharacter>
+{
 
-	// Use this for initialization
+    // Use this for initialization
     public float upForce = 500f;
     public float horForce = 100f;
     public float moveSpeed = 5.0f;
+
     Rigidbody2D mRigidbody = null;
     StateManager mStateManager = null;
     Animator mAnimator = null;
-
     int mMoveDir = 0;
-	void Start () {
+
+    #region lifecycle
+    void Start()
+    {
         moveSpeed = 5.0f;
         mStateManager = new StateManager();
         mAnimator = GameObject.Find("rendernode").GetComponent<Animator>();
@@ -25,9 +29,10 @@ public class MainCharacter : Singleton<MainCharacter> {
             mRigidbody.velocity = Vector2.zero;
             if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
             {
-                mRigidbody.AddForce((Vector2.up*2 + new Vector2(transform.right.x, transform.right.y)).normalized * upForce, ForceMode2D.Force);
+                mRigidbody.AddForce((Vector2.up * 2 + new Vector2(transform.right.x, transform.right.y)).normalized * upForce, ForceMode2D.Force);
             }
-            else {
+            else
+            {
                 mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
             }
             mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJump);
@@ -42,7 +47,8 @@ public class MainCharacter : Singleton<MainCharacter> {
             {
                 mRigidbody.AddForce(Vector2.left * horForce, ForceMode2D.Force);
             }
-            else {
+            else
+            {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         };
@@ -61,7 +67,7 @@ public class MainCharacter : Singleton<MainCharacter> {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         };
-
+        // 按键松开
         InputEventControlller.Ins.OnLeftUp += () =>
         {
             mMoveDir = 0;
@@ -76,21 +82,29 @@ public class MainCharacter : Singleton<MainCharacter> {
         {
             mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Translate(new Vector2(1,0) * Time.deltaTime * moveSpeed * mMoveDir);
-        if(transform.position.x >6){
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
+        //  场景移动检测
+        if (transform.position.x > 6)
+        {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
-	}
-
-    void OnCollisionEnter(Collision collision) {
     }
+    // 主角碰撞检测
+    void OnCollisionEnter(Collision collision)
+    {
+    }
+    #endregion
 
+    #region public interface
     // 0:toIdle 1:toRun 2:toJump
-    public void SetAnimationSate(int val) {
+    public void SetAnimationSate(int val)
+    {
         mAnimator.SetInteger("AnimState", val);
     }
+    #endregion
 }
