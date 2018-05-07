@@ -5,6 +5,8 @@ public class HeaderProto {
     public enum PCharState{
         PCharStateIdle = 0,
         PCharStateRun = 1,
-        PCharStateJump = 2,
+        PCharStateJumpUp = 2,
+        PCharStateJumpDown = 3,
+        PCharStateDead = 4,
     }
 }

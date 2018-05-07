@@ -13,10 +13,16 @@ public class StateManager {
         switch (nextState) { 
             case HeaderProto.PCharState.PCharStateIdle:
                 MainCharacter.Ins.SetAnimationSate(0); break;
-            case HeaderProto.PCharState.PCharStateJump:
+            case HeaderProto.PCharState.PCharStateJumpUp:
                 MainCharacter.Ins.SetAnimationSate(2); break;
+            case HeaderProto.PCharState.PCharStateJumpDown:
+                MainCharacter.Ins.SetAnimationSate(1); break;
             case HeaderProto.PCharState.PCharStateRun:
                 MainCharacter.Ins.SetAnimationSate(1);break;
+            case HeaderProto.PCharState.PCharStateDead:
+                MainCharacter.Ins.SetAnimationSate(100);
+                MainCharacter.Ins.OnDead();
+                break;
             default: 
                 break;
         }

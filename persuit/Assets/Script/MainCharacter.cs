@@ -6,12 +6,16 @@ public class MainCharacter : Singleton<MainCharacter>
 {
 
     // Use this for initialization
+    [Tooltip("跳跃力度")]
     public float upForce = 500f;
-    public float horForce = 100f;
+    [Tooltip("左右移动速度")]
     public float moveSpeed = 5.0f;
+    [Tooltip("多级跳次数")]
+    public int maxJump = 2;
+    public int jumpCount = 0;
 
     Rigidbody2D mRigidbody = null;
-    StateManager mStateManager = null;
+    public StateManager mStateManager = null;
     Animator mAnimator = null;
     int mMoveDir = 0;
 
@@ -26,16 +30,12 @@ public class MainCharacter : Singleton<MainCharacter>
         // 跳
         InputEventControlller.Ins.OnUpArrowDown += () =>
         {
+            if (jumpCount >= maxJump) return;
+            ++jumpCount;
+
             mRigidbody.velocity = Vector2.zero;
-            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
-            {
-                mRigidbody.AddForce((Vector2.up * 2 + new Vector2(transform.right.x, transform.right.y)).normalized * upForce, ForceMode2D.Force);
-            }
-            else
-            {
-                mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
-            }
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJump);
+            mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJumpUp);
         };
         // left
         InputEventControlller.Ins.OnLeftDown += () =>
@@ -43,14 +43,7 @@ public class MainCharacter : Singleton<MainCharacter>
             mMoveDir = 1;
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             mRigidbody.velocity = Vector2.zero;
-            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJump)
-            {
-                mRigidbody.AddForce(Vector2.left * horForce, ForceMode2D.Force);
-            }
-            else
-            {
-                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
-            }
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
         };
         // right
         InputEventControlller.Ins.OnRightDown += () =>
@@ -58,14 +51,7 @@ public class MainCharacter : Singleton<MainCharacter>
             mMoveDir = 1;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             mRigidbody.velocity = Vector2.zero;
-            if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJump)
-            {
-                mRigidbody.AddForce(Vector2.right * horForce, ForceMode2D.Force);
-            }
-            else
-            {
-                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
-            }
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
         };
         // 按键松开
         InputEventControlller.Ins.OnLeftUp += () =>
@@ -80,7 +66,7 @@ public class MainCharacter : Singleton<MainCharacter>
         };
         InputEventControlller.Ins.OnUpArrowUp += () =>
         {
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
+            //mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
     }
 
@@ -88,15 +74,44 @@ public class MainCharacter : Singleton<MainCharacter>
     void Update()
     {
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
+
         //  场景移动检测
         if (transform.position.x > 6)
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
+         // 跳到最高点
+        if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp && mRigidbody.velocity.y < 0) {
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJumpDown);
+        }
+
+        // 跌落检测
+        if (transform.position.y < -10)
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
+
+        //Debug.Log("curstate:" + (int)mStateManager.mCurState);
     }
     // 主角碰撞检测
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
+        string colliderName = collision.gameObject.name;
+        if (colliderName.Substring(0, 8) == "platform") // 落地
+        {
+            jumpCount = 0;
+            if (mMoveDir == 0)
+            {
+                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
+            }
+            else {
+                mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
+            }
+        }
+        
+        
+    }
+
+    public void OnDead() {
+        transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
     }
     #endregion
 
