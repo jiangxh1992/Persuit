@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharacter : Singleton<MainCharacter>
 {
@@ -16,7 +17,9 @@ public class MainCharacter : Singleton<MainCharacter>
 
     Rigidbody2D mRigidbody = null;
     public StateManager mStateManager = null;
-    Animator mAnimator = null;
+    public Animator mAnimator = null;
+    public AudioSource mAudioSource = null;
+    public AudioClip[] sounds;
     int mMoveDir = 0;
 
     #region lifecycle
@@ -24,7 +27,8 @@ public class MainCharacter : Singleton<MainCharacter>
     {
         moveSpeed = 5.0f;
         mStateManager = new StateManager();
-        mAnimator = GameObject.Find("rendernode").GetComponent<Animator>();
+        mAnimator = transform.FindChild("rendernode").GetComponent<Animator>();
+        mAudioSource = GetComponent<AudioSource>();
 
         mRigidbody = GetComponent<Rigidbody2D>();
         // 跳
@@ -73,6 +77,7 @@ public class MainCharacter : Singleton<MainCharacter>
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("speed:"+mRigidbody.velocity.y);
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
 
         //  场景移动检测
@@ -94,6 +99,7 @@ public class MainCharacter : Singleton<MainCharacter>
     // 主角碰撞检测
     void OnCollisionEnter2D(Collision2D collision)
     {
+        PlayLandEffect();
         string colliderName = collision.gameObject.name;
         if (colliderName.Substring(0, 8) == "platform") // 落地
         {
@@ -106,8 +112,15 @@ public class MainCharacter : Singleton<MainCharacter>
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         }
-        
-        
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "finalTrigger") {
+            SceneManager.LoadScene("GameLevel2");
+        }
+        else
+            other.gameObject.GetComponent<psNpcManager>().OnWakeUp();
     }
 
     public void OnDead() {
@@ -115,11 +128,29 @@ public class MainCharacter : Singleton<MainCharacter>
     }
     #endregion
 
+    void PlayLandEffect() {
+        mAudioSource.clip = sounds[1];
+        mAudioSource.Play();
+    }
+
+
+
+
     #region public interface
     // 0:toIdle 1:toRun 2:toJump
     public void SetAnimationSate(int val)
     {
+        
         mAnimator.SetInteger("AnimState", val);
+    }
+    public void ChangeToIdleAfterDelay(float delay){
+        StartCoroutine(DelayChangeToIdle(delay));
+    }
+    IEnumerator DelayChangeToIdle(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SetAnimationSate(0);
+        yield return 0;
     }
     #endregion
 }

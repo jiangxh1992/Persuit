@@ -1,21 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextureScroller : MonoBehaviour {
 
     private float offset;
     public float speed = 0.1f;
+    Material mat = null;
     void Start()
     {
-        GetComponent<Renderer>().material.mainTexture.wrapMode = TextureWrapMode.Repeat;
+        mat = GetComponent<Renderer>().material;
+        mat.mainTexture.wrapMode = TextureWrapMode.Repeat;
     }
 
     void Update()
     {
         if(psPlatformManager.Ins.isFrontLayerMoving){
-            offset += speed * Time.deltaTime * (GetComponent<Renderer>().material.mainTextureScale.x / 1.5f);
-            GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+            offset = speed * Time.time;
+            mat.mainTextureOffset = new Vector2(offset,0);
         }
     }
 }
