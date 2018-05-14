@@ -14,9 +14,11 @@ public class StateManager {
             case HeaderProto.PCharState.PCharStateIdle:
                 MainCharacter.Ins.SetAnimationSate(0); break;
             case HeaderProto.PCharState.PCharStateJumpUp:
-                MainCharacter.Ins.SetAnimationSate(2); break;
+                MainCharacter.Ins.SetAnimationSate(2);
+                MainCharacter.Ins.ChangeToIdleAfterDelay(0.1f);
+                break;
             case HeaderProto.PCharState.PCharStateJumpDown:
-                MainCharacter.Ins.SetAnimationSate(1); break;
+                break;
             case HeaderProto.PCharState.PCharStateRun:
                 MainCharacter.Ins.SetAnimationSate(1);break;
             case HeaderProto.PCharState.PCharStateDead:
