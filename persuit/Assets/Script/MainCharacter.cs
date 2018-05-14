@@ -27,7 +27,7 @@ public class MainCharacter : Singleton<MainCharacter>
     {
         moveSpeed = 5.0f;
         mStateManager = new StateManager();
-        mAnimator = transform.FindChild("rendernode").GetComponent<Animator>();
+        mAnimator = transform.Find("rendernode").GetComponent<Animator>();
         mAudioSource = GetComponent<AudioSource>();
 
         mRigidbody = GetComponent<Rigidbody2D>();

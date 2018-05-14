@@ -7,7 +7,7 @@ public class psNpcManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mAnimator = transform.FindChild("rendernode").GetComponent<Animator>();
+		mAnimator = transform.Find("rendernode").GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
