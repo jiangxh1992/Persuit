@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainCharacter : Singleton<MainCharacter>
 {
@@ -121,7 +120,7 @@ public class MainCharacter : Singleton<MainCharacter>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "finalTrigger") {
-            SceneManager.LoadScene("GameLevel2");
+            psSceneManager.Ins.LoadSceneProgress("GameLevel2");
         }
         else
             other.gameObject.GetComponent<psNpcManager>().OnWakeUp();

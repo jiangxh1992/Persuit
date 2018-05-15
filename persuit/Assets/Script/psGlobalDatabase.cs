@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class psMenuManager : MonoBehaviour {
+public class psGlobalDatabase : Singleton<psGlobalDatabase> {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,4 @@ public class psMenuManager : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void StartNewGame() {
-        psSceneManager.Ins.LoadSceneProgress("GameLevel1");
-    }
 }
