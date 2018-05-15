@@ -14,6 +14,9 @@ public class MainCharacter : Singleton<MainCharacter>
     [Tooltip("多级跳次数")]
     public int maxJump = 2;
     public int jumpCount = 0;
+    [Tooltip("角色所在屏幕位置比例")]
+    [Range(0.0f, 1.0f)]
+    public float mainCharPosRatio = 0.5f;
 
     Rigidbody2D mRigidbody = null;
     public StateManager mStateManager = null;
@@ -77,11 +80,12 @@ public class MainCharacter : Singleton<MainCharacter>
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("screenwidth:" + Screen.width + "positionX:" + Camera.main.WorldToScreenPoint(transform.position).x);
         //Debug.Log("speed:"+mRigidbody.velocity.y);
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
 
         //  场景移动检测
-        if (transform.position.x > 6)
+        if (Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
