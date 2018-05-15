@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class psNpcManager : MonoBehaviour {
     public Animator mAnimator = null;
+    public float WeakTime = 0.2f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class psNpcManager : MonoBehaviour {
 
     public void OnWakeUp() {
         mAnimator.SetInteger("NpcState",1);
-        StartCoroutine(DelayChangeToIdle(0.2f));
+        StartCoroutine(DelayChangeToIdle(WeakTime));
     }
     IEnumerator DelayChangeToIdle(float delay)
     {
