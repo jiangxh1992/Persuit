@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class psGameLevelManager : Singleton<psGameLevelManager> {
     // 操作按钮
-    public Button btn_left = null;
+    public psButton btn_left = null;
     public Button btn_right = null;
     public Button btn_jump = null;
 
@@ -17,7 +17,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 	void Start () {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.GameUI.SetActive(true);
-        btn_left = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_left").GetComponent<Button>();
+        btn_left = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_left").GetComponent<psButton>();
         btn_right = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_right").GetComponent<Button>();
         btn_jump = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_jump").GetComponent<Button>();
 

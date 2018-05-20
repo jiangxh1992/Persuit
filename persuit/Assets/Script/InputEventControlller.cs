@@ -21,25 +21,25 @@ public class InputEventControlller : Singleton<InputEventControlller> {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            this.OnLeftDown();
+            OnLeftDown();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            this.OnRightDown();
+            OnRightDown();
         }
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            this.OnLeftUp();
+            OnLeftUp();
         }
         else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            this.OnRightUp();
+            OnRightUp();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            this.OnUpArrowDown();
+            OnUpArrowDown();
         }
         else if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            this.OnUpArrowUp();
+            OnUpArrowUp();
         }
 	}
 }

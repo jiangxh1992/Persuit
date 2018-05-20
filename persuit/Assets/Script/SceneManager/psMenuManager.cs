@@ -9,7 +9,7 @@ public class psMenuManager : MonoBehaviour {
 	void Start () {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.MenuUI.SetActive(true);
-		btn_start = psUIRootManager.Ins.MenuUI.transform.FindChild("btn_start").GetComponent<Button>();
+		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
         btn_start.onClick.AddListener(StartNewGame);
 	}
 	

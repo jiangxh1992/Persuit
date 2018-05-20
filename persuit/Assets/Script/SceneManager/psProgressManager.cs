@@ -19,8 +19,8 @@ public class psProgressManager : MonoBehaviour
     {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.ProgressUI.SetActive(true);
-        slider = psUIRootManager.Ins.ProgressUI.transform.FindChild("slider").GetComponent<Slider>();
-        sliderText = psUIRootManager.Ins.ProgressUI.transform.FindChild("sliderText").GetComponent<Text>();
+        slider = psUIRootManager.Ins.ProgressUI.transform.Find("slider").GetComponent<Slider>();
+        sliderText = psUIRootManager.Ins.ProgressUI.transform.Find("sliderText").GetComponent<Text>();
         slider.value = 0.0f;
         StartCoroutine(loadScene());
     }
