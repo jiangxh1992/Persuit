@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class psGameLevelManager : Singleton<psGameLevelManager> {
     // 操作按钮
@@ -13,6 +15,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public GameObject gameoverPnl = null;
     public Button btn_home = null;
     public Button btn_restart = null;
+
 	// Use this for initialization
 	void Start () {
         psUIRootManager.Ins.HideAllUIs();
@@ -27,16 +30,21 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         btn_restart = gameoverPnl.transform.Find("btn_restart").GetComponent<Button>();
 
         CreateMainChar();
+        InitUIEvent();
 	}
 
     void InitUIEvent() {
-        btn_home.onClick.AddListener(() => {
-            psSceneManager.LoadSceneProgress("Menu");
-        });
-        btn_restart.onClick.AddListener(() =>
-        {
-            psSceneManager.LoadScene(psGlobalDatabase.Ins.curLevel);
-        });
+        btn_home.onClick.AddListener(Home);
+        btn_restart.onClick.AddListener(Restart);
+    }
+
+    void Home()
+    {
+        psSceneManager.LoadSceneProgress("Menu");
+    }
+    void Restart()
+    {
+        psSceneManager.LoadScene(psGlobalDatabase.Ins.curLevel);
     }
 
     void CreateMainChar() {
@@ -58,5 +66,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public void OnGameOver()
     {
         psGlobalDatabase.Ins.ResetMainChar();
+        gameoverPnl.SetActive(true);
     }
 }

@@ -7,6 +7,7 @@ public class psButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (psGlobalDatabase.Ins.mainChar == null || psGlobalDatabase.Ins.mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateDead) return;
         if (gameObject.name == "btn_left")
         {
             InputEventControlller.Ins.OnLeftDown();
@@ -23,6 +24,7 @@ public class psButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (psGlobalDatabase.Ins.mainChar == null || psGlobalDatabase.Ins.mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateDead) return;
         if (gameObject.name == "btn_left")
         {
             InputEventControlller.Ins.OnLeftUp();

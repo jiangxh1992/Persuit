@@ -8,8 +8,6 @@ public class psPlatformManager : Singleton<psPlatformManager> {
     float moveDistance = 5;
     float movedDistance = 0;
 
-    public float deslevel1 = -163.0f;
-    public float deslevel2 = -225.0f;
 	// Use this for initialization
 	void Start () {
 		

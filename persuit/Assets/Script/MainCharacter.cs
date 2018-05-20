@@ -92,10 +92,7 @@ public class MainCharacter : MonoBehaviour
         if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp && mRigidbody.velocity.y < 0) {
             mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJumpDown);
         }
-
-        // 跌落检测
-        if (transform.position.y < -10)
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
+            
 
         //Debug.Log("curstate:" + (int)mStateManager.mCurState);
     }
@@ -103,7 +100,7 @@ public class MainCharacter : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         string colliderName = collision.gameObject.name;
-        if (colliderName.Substring(0, 8) == "platform") // 落地
+        if (colliderName.Length >=8 &&colliderName.Substring(0, 8) == "platform") // 落地
         {
             PlayLandEffect();
             jumpCount = 0;
@@ -114,6 +111,10 @@ public class MainCharacter : MonoBehaviour
             else {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
+        }
+        else if (colliderName == "killer") // 死亡
+        {
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
         }
     }
     // 触发器
