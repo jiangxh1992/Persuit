@@ -3,25 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class psSceneManager : Singleton<psSceneManager> {
+public class psSceneManager {
 
-    public string nextLevel = null; //下一个要加载的场景
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void LoadSceneProgress(string nextlevel) {
-        nextLevel = nextlevel;
+    public static void LoadSceneProgress(string nextlevel) {
+        psGlobalDatabase.Ins.curLevel = nextlevel;
         SceneManager.LoadScene("Progress");
     }
 
     public static void LoadScene(string level) {
+        psGlobalDatabase.Ins.curLevel = level;
         SceneManager.LoadScene(level);
     }
 }

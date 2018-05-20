@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCharacter : Singleton<MainCharacter>
+public class MainCharacter : MonoBehaviour
 {
-
     // Use this for initialization
     [Tooltip("跳跃力度")]
     public float upForce = 500f;
@@ -21,8 +20,9 @@ public class MainCharacter : Singleton<MainCharacter>
     public StateManager mStateManager = null;
     public Animator mAnimator = null;
     public AudioSource mAudioSource = null;
-    public AudioClip[] sounds;
+    public AudioClip[] sounds =null;
     int mMoveDir = 0;
+    bool isInFinalArea = false; // 是否到达关底
 
     #region lifecycle
     void Start()
@@ -36,7 +36,7 @@ public class MainCharacter : Singleton<MainCharacter>
         // 跳
         InputEventControlller.Ins.OnUpArrowDown += () =>
         {
-            if (jumpCount >= maxJump) return;
+            if (jumpCount > maxJump) return;
             ++jumpCount;
 
             mRigidbody.velocity = Vector2.zero;
@@ -84,7 +84,7 @@ public class MainCharacter : Singleton<MainCharacter>
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
 
         //  场景移动检测
-        if (Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
+        if (!isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
@@ -102,10 +102,10 @@ public class MainCharacter : Singleton<MainCharacter>
     // 主角碰撞检测
     void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayLandEffect();
         string colliderName = collision.gameObject.name;
         if (colliderName.Substring(0, 8) == "platform") // 落地
         {
+            PlayLandEffect();
             jumpCount = 0;
             if (mMoveDir == 0)
             {
@@ -116,24 +116,28 @@ public class MainCharacter : Singleton<MainCharacter>
             }
         }
     }
-
+    // 触发器
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "finalTrigger") {
-            psSceneManager.Ins.LoadSceneProgress("GameLevel2");
+            psGlobalDatabase.Ins.ResetMainChar();
+            psSceneManager.LoadSceneProgress("GameLevel2");
+        }
+        else if (other.gameObject.name == "finalArea")
+        {
+            isInFinalArea = true;
+            psPlatformManager.Ins.isFrontLayerMoving = false;
         }
         else
             other.gameObject.GetComponent<psNpcManager>().OnWakeUp();
     }
-
-    public void OnDead() {
-        transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-    }
     #endregion
 
     void PlayLandEffect() {
-        mAudioSource.clip = sounds[1];
-        mAudioSource.Play();
+        if (mAudioSource != null) {
+            mAudioSource.clip = sounds[1];
+            mAudioSource.Play();
+        }
     }
 
 

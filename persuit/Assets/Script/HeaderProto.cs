@@ -9,4 +9,12 @@ public class HeaderProto {
         PCharStateJumpDown = 3,
         PCharStateDead = 4,
     }
+
+    public enum PGameLevelType {
+        PGameLevelTypeLevel1 = 1,
+        PGameLevelTypeLevel2 = 2,
+
+        PGameLevelTypeWellCome = 10,
+        PGameLevelTypeMenu = 11,
+    }
 }

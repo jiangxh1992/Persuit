@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class psGlobalDatabase : Singleton<psGlobalDatabase> {
 
+    public MainCharacter mainChar = null; // 主角
+    public string curLevel = "Wellcome"; // 当前场景
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,10 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
 	void Update () {
 		
 	}
+
+    // 重置主角
+    public void ResetMainChar(){
+        mainChar.transform.localPosition = new Vector3(-6,5,0);
+        mainChar.gameObject.SetActive(false);
+    }
 }

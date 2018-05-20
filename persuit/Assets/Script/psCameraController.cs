@@ -12,7 +12,7 @@ public class psCameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (MainCharacter.Ins.mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp)
+        if (psGlobalDatabase.Ins.mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp)
 		{
             transform.position += new Vector3(0, cameraJumpSpeed, 0);
 		}
