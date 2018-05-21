@@ -8,6 +8,7 @@ public class TextureScroller : MonoBehaviour {
     private float offset;
     public float speed = 0.1f;
     Material mat = null;
+    float timeTick = 0.0f;
     void Start()
     {
         mat = GetComponent<Renderer>().material;
@@ -17,7 +18,8 @@ public class TextureScroller : MonoBehaviour {
     void Update()
     {
         if(psPlatformManager.Ins.isFrontLayerMoving){
-            offset = speed * Time.time;
+            timeTick += 0.02f;
+            offset = speed * timeTick;
             mat.mainTextureOffset = new Vector2(offset,0);
         }
     }
