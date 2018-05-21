@@ -6,6 +6,8 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
 
     public MainCharacter mainChar = null; // 主角
     public string curLevel = "Wellcome"; // 当前场景
+    public Camera MainCamera = null;
+    public psNpcManager curNpc = null;
 	// Use this for initialization
 	void Start () {
 		

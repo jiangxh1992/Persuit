@@ -3,39 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 
 public class psGameLevelManager : Singleton<psGameLevelManager> {
-    // 操作按钮
-    public psButton btn_left = null;
-    public Button btn_right = null;
-    public Button btn_jump = null;
-
-    // 结算界面
-    public GameObject gameoverPnl = null;
-    public Button btn_home = null;
-    public Button btn_restart = null;
+    public int GameLevelType = 1; // 1:横轴 2：纵轴
 
 	// Use this for initialization
 	void Start () {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.GameUI.SetActive(true);
-        btn_left = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_left").GetComponent<psButton>();
-        btn_right = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_right").GetComponent<Button>();
-        btn_jump = psUIRootManager.Ins.GameUI.transform.Find("BottomUI/btn_jump").GetComponent<Button>();
-
-        gameoverPnl = psUIRootManager.Ins.GameUI.transform.Find("GameOverPnl").gameObject;
-        gameoverPnl.SetActive(false);
-        btn_home = gameoverPnl.transform.Find("btn_home").GetComponent<Button>();
-        btn_restart = gameoverPnl.transform.Find("btn_restart").GetComponent<Button>();
 
         CreateMainChar();
         InitUIEvent();
 	}
 
     void InitUIEvent() {
-        btn_home.onClick.AddListener(Home);
-        btn_restart.onClick.AddListener(Restart);
+        psUIRootManager.Ins.btn_home.GetComponent<Button>().onClick.AddListener(Home);
+        psUIRootManager.Ins.btn_restart.GetComponent<Button>().onClick.AddListener(Restart);
     }
 
     void Home()
@@ -66,6 +49,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public void OnGameOver()
     {
         psGlobalDatabase.Ins.ResetMainChar();
-        gameoverPnl.SetActive(true);
+        psUIRootManager.Ins.gameoverPnl.SetActive(true);
     }
 }

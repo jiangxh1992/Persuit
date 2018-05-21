@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class InputEventControlller : Singleton<InputEventControlller> {
 
-    public delegate void InputInputDelegate();
+    public delegate void InputDelegate();
 
-    public InputInputDelegate OnLeftDown;
-    public InputInputDelegate OnRightDown;
-    public InputInputDelegate OnLeftUp;
-    public InputInputDelegate OnRightUp;
-    public InputInputDelegate OnUpArrowDown;
-    public InputInputDelegate OnUpArrowUp;
+    public InputDelegate OnLeftDown = new InputDelegate(() => { });
+    public InputDelegate OnRightDown = new InputDelegate(() => { });
+    public InputDelegate OnLeftUp = new InputDelegate(() => { });
+    public InputDelegate OnRightUp = new InputDelegate(() => { });
+    public InputDelegate OnUpArrowDown = new InputDelegate(() => { });
+    public InputDelegate OnUpArrowUp = new InputDelegate(() => { });
 
 	// Use this for initialization
 	void Start () {

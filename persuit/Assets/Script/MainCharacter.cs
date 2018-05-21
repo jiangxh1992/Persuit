@@ -84,7 +84,7 @@ public class MainCharacter : MonoBehaviour
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
 
         //  场景移动检测
-        if (!isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
+        if (psGameLevelManager.Ins.GameLevelType == 1 && !isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }

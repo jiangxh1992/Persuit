@@ -12,6 +12,7 @@ public class psCameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
         if (psGlobalDatabase.Ins.mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp)
 		{
             transform.position += new Vector3(0, cameraJumpSpeed, 0);
@@ -19,6 +20,11 @@ public class psCameraController : MonoBehaviour {
         else if(transform.position.y > initPosY)
         {
             transform.position -= new Vector3(0, cameraJumpSpeed, 0);
+        }
+         * */
+        if (psGameLevelManager.Ins != null && psGameLevelManager.Ins.GameLevelType == 2) { 
+            Vector3 mainPos = psGlobalDatabase.Ins.mainChar.transform.position;
+            transform.position = new Vector3(mainPos.x, mainPos.y, transform.position.z);
         }
 	}
 }
