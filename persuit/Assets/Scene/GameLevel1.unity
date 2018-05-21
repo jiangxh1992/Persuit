@@ -178,7 +178,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &618728285
+--- !u!1001 &1093294087
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -220,38 +220,6 @@ Prefab:
     - target: {fileID: 1760703331302086, guid: afa00168938753f41bcaa85881587c2a, type: 2}
       propertyPath: m_Name
       value: guanqia1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204459730585276, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -34.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4552729950497794, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422712443938244, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -4.902813
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423766480676450, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -37.142815
-      objectReference: {fileID: 0}
-    - target: {fileID: 4552729950497794, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.2320474
-      objectReference: {fileID: 0}
-    - target: {fileID: 4552729950497794, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567676815624124, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.96000034
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567676815624124, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}

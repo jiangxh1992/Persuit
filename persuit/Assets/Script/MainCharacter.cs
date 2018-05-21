@@ -112,25 +112,29 @@ public class MainCharacter : MonoBehaviour
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
         }
-        else if (colliderName == "killer") // 死亡
-        {
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
-        }
     }
     // 触发器
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "finalTrigger") {
+        string colliderName = other.gameObject.name;
+        if (colliderName == "finalTrigger") // 场景切换
+        { 
             psGlobalDatabase.Ins.ResetMainChar();
             psSceneManager.LoadSceneProgress("GameLevel2");
         }
-        else if (other.gameObject.name == "finalArea")
+        else if (colliderName == "finalArea") // 关底
         {
             isInFinalArea = true;
             psPlatformManager.Ins.isFrontLayerMoving = false;
         }
-        else
+        else if (colliderName.Length >= 6 && colliderName.Substring(0, 6) == "killer") // 死亡
+        {
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
+        }
+        else if (colliderName.Length >= 3 && colliderName.Substring(0, 3) == "npc") // npc
+        {
             other.gameObject.GetComponent<psNpcManager>().OnWakeUp();
+        }
     }
     #endregion
 
