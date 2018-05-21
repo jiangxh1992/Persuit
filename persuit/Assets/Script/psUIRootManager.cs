@@ -68,6 +68,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         GameUI.SetActive(false);
         gameoverPnl.SetActive(false);
         npcDialog.SetActive(false);
+        npcChatBtn.SetActive(false);
         ProgressUI.SetActive(false);
     }
 }

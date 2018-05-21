@@ -5,16 +5,30 @@ using UnityEngine.UI;
 
 public class psMenuManager : MonoBehaviour {
     public Button btn_start = null;
-    public Button btn_level3 = null;
+    public Button btn_load = null;
+    public GameObject loadPnl = null;
+    public Button level1 = null;
+    public Button level2 = null;
+    public Button level3 = null;
 	// Use this for initialization
 	void Start () {
-        psUIRootManager.Ins.HideAllUIs();
-        psUIRootManager.Ins.MenuUI.SetActive(true);
 		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
         btn_start.onClick.AddListener(StartNewGame);
 
-        btn_level3 = psUIRootManager.Ins.MenuUI.transform.Find("level3").GetComponent<Button>();
-        btn_level3.onClick.AddListener(Level3);
+        btn_load = psUIRootManager.Ins.MenuUI.transform.Find("load").GetComponent<Button>();
+        btn_load.onClick.AddListener(Load);
+
+        loadPnl = psUIRootManager.Ins.MenuUI.transform.Find("loadPnl").gameObject;
+        level1 = loadPnl.transform.Find("level1").GetComponent<Button>();
+        level2 = loadPnl.transform.Find("level2").GetComponent<Button>();
+        level3 = loadPnl.transform.Find("level3").GetComponent<Button>();
+        level1.onClick.AddListener(EnterLevel1);
+        level2.onClick.AddListener(EnterLevel2);
+        level3.onClick.AddListener(EnterLevel3);
+
+        psUIRootManager.Ins.HideAllUIs();
+        loadPnl.SetActive(false);
+        psUIRootManager.Ins.MenuUI.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -25,7 +39,19 @@ public class psMenuManager : MonoBehaviour {
     public void StartNewGame() {
         psSceneManager.LoadSceneProgress("GameLevel1");
     }
-    public void Level3()
+    public void Load()
+    {
+        loadPnl.SetActive(true);
+    }
+
+    public void EnterLevel1() {
+        psSceneManager.LoadSceneProgress("GameLevel1");
+    }
+    public void EnterLevel2()
+    {
+        psSceneManager.LoadSceneProgress("GameLevel2");
+    }
+    public void EnterLevel3()
     {
         psSceneManager.LoadSceneProgress("GameLevel3");
     }

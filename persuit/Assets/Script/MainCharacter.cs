@@ -41,7 +41,7 @@ public class MainCharacter : MonoBehaviour
 
             mRigidbody.velocity = Vector2.zero;
             mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJumpUp);
+            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJump);
         };
         // left
         InputEventControlller.Ins.OnLeftDown += () =>
@@ -88,11 +88,6 @@ public class MainCharacter : MonoBehaviour
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
-         // 跳到最高点
-        if (mStateManager.mCurState == HeaderProto.PCharState.PCharStateJumpUp && mRigidbody.velocity.y < 0) {
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJumpDown);
-        }
-            
 
         //Debug.Log("curstate:" + (int)mStateManager.mCurState);
     }

@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Wellcome.unity
     guid: 3d8875f5ba2c22e498d7a66094f4fbf5
+  - enabled: 1
+    path: Assets/Scene/GameLevel3.unity
+    guid: ef9d0ac970d9777498be62d59bb41cb1
