@@ -169,15 +169,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.559
       objectReference: {fileID: 0}
     - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 8.2614
       objectReference: {fileID: 0}
     - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.8138
       objectReference: {fileID: 0}
     - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
       propertyPath: m_LocalRotation.x
@@ -198,6 +198,58 @@ Prefab:
     - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.904244
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.9042425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449065849697380, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2.9042425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201033889888708, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201033889888708, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201033889888708, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.0767001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201033889888708, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0767001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201033889888708, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.0767001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337241768280790, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337241768280790, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337241768280790, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.0355
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337241768280790, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0355
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337241768280790, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.0355
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6379482aafaaccb43a67367a1671a5fb, type: 2}
@@ -254,7 +306,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.389783
+  orthographic size: 14.467337
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -277,8 +329,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2137268954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.43, y: 3.18, z: -7.74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -12.3, y: -38.9, z: -55.532}
+  m_LocalScale: {x: 5.171704, y: 3.1151342, z: 2.419524}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
