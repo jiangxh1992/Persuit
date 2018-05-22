@@ -7,7 +7,6 @@ public class psWellComeManager : MonoBehaviour {
     public Image mask = null;
 	// Use this for initialization
 	void Start () {
-        psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.WellComeUI.SetActive(true);
 	}
 	

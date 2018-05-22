@@ -5,75 +5,19 @@ using UnityEngine;
 public class MainCharacter : MonoBehaviour
 {
     // Use this for initialization
-    [Tooltip("跳跃力度")]
-    public float upForce = 500f;
-    [Tooltip("左右移动速度")]
-    public float moveSpeed = 5.0f;
-    [Tooltip("多级跳次数")]
-    public int maxJump = 2;
-    public int jumpCount = 0;
-    [Tooltip("角色所在屏幕位置比例")]
-    [Range(0.0f, 1.0f)]
-    public float mainCharPosRatio = 0.5f;
-
-    Rigidbody2D mRigidbody = null;
+    public Rigidbody2D mRigidbody = null;
     public StateManager mStateManager = null;
     public Animator mAnimator = null;
     public AudioSource mAudioSource = null;
     public AudioClip[] sounds =null;
-    int mMoveDir = 0;
-    bool isInFinalArea = false; // 是否到达关底
 
     #region lifecycle
     void Start()
     {
-        moveSpeed = 5.0f;
         mStateManager = new StateManager();
         mAnimator = transform.Find("rendernode").GetComponent<Animator>();
         mAudioSource = GetComponent<AudioSource>();
-
         mRigidbody = GetComponent<Rigidbody2D>();
-        // 跳
-        InputEventControlller.Ins.OnUpArrowDown += () =>
-        {
-            if (jumpCount > maxJump) return;
-            ++jumpCount;
-
-            mRigidbody.velocity = Vector2.zero;
-            mRigidbody.AddForce(Vector2.up * upForce, ForceMode2D.Force);
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateJump);
-        };
-        // left
-        InputEventControlller.Ins.OnLeftDown += () =>
-        {
-            mMoveDir = 1;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            mRigidbody.velocity = Vector2.zero;
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
-        };
-        // right
-        InputEventControlller.Ins.OnRightDown += () =>
-        {
-            mMoveDir = 1;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            mRigidbody.velocity = Vector2.zero;
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
-        };
-        // 按键松开
-        InputEventControlller.Ins.OnLeftUp += () =>
-        {
-            mMoveDir = 0;
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
-        };
-        InputEventControlller.Ins.OnRightUp += () =>
-        {
-            mMoveDir = 0;
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
-        };
-        InputEventControlller.Ins.OnUpArrowUp += () =>
-        {
-            //mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
-        };
     }
 
     // Update is called once per frame
@@ -81,10 +25,10 @@ public class MainCharacter : MonoBehaviour
     {
         Debug.Log("screenwidth:" + Screen.width + "positionX:" + Camera.main.WorldToScreenPoint(transform.position).x);
         //Debug.Log("speed:"+mRigidbody.velocity.y);
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * moveSpeed * mMoveDir); // 主角左右移动
+        transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed * psGlobalDatabase.Ins.mMoveDir); // 主角左右移动
 
         //  场景移动检测
-        if (psGameLevelManager.Ins.GameLevelType == 1 && !isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * mainCharPosRatio)
+        if (psGameLevelManager.Ins.GameLevelType == 1 && !psGlobalDatabase.Ins.isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * psGlobalDatabase.Ins.mainCharPosRatio)
         {
             psPlatformManager.Ins.isFrontLayerMoving = true;
         }
@@ -98,8 +42,8 @@ public class MainCharacter : MonoBehaviour
         if (colliderName.Length >=8 &&colliderName.Substring(0, 8) == "platform") // 落地
         {
             PlayLandEffect();
-            jumpCount = 0;
-            if (mMoveDir == 0)
+            psGlobalDatabase.Ins.jumpCount = 0;
+            if (psGlobalDatabase.Ins.mMoveDir == 0)
             {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
             }
@@ -115,11 +59,13 @@ public class MainCharacter : MonoBehaviour
         if (colliderName == "finalTrigger") // 场景切换
         { 
             psGlobalDatabase.Ins.ResetMainChar();
-            psSceneManager.LoadSceneProgress("GameLevel2");
+            string curLevel = psGlobalDatabase.Ins.curLevel;
+            string nextLevel = "GameLevel" + (int.Parse(curLevel.Substring(curLevel.Length - 1))+1);
+            psSceneManager.LoadSceneProgress(nextLevel);
         }
         else if (colliderName == "finalArea") // 关底
         {
-            isInFinalArea = true;
+            psGlobalDatabase.Ins.isInFinalArea = true;
             psPlatformManager.Ins.isFrontLayerMoving = false;
         }
         else if (colliderName.Length >= 6 && colliderName.Substring(0, 6) == "killer") // 死亡
@@ -139,8 +85,6 @@ public class MainCharacter : MonoBehaviour
             mAudioSource.Play();
         }
     }
-
-
 
 
     #region public interface
