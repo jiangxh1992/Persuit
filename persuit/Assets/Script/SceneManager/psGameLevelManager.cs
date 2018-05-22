@@ -48,6 +48,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 
     public void OnGameOver()
     {
+        psGlobalDatabase.Ins.mMoveDir = 0;
         psGlobalDatabase.Ins.ResetMainChar();
         psUIRootManager.Ins.gameoverPnl.SetActive(true);
     }

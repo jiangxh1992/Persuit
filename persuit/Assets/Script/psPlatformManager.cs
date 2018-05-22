@@ -15,7 +15,9 @@ public class psPlatformManager : Singleton<psPlatformManager> {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isFrontLayerMoving) {
+        /*
+        if (psGlobalDatabase.Ins.mMoveDir != 0)
+        {
             float move = Time.deltaTime * moveSpeed;
             transform.Translate(new Vector2(-1, 0) * move);
             movedDistance += move;
@@ -24,6 +26,7 @@ public class psPlatformManager : Singleton<psPlatformManager> {
                 movedDistance = 0;
             }
         }
+         * */
 	}
 
     public void OnFrontLayerMove(){

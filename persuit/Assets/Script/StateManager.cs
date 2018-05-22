@@ -15,7 +15,7 @@ public class StateManager {
                 psGlobalDatabase.Ins.mainChar.SetAnimationSate(0); break;
             case HeaderProto.PCharState.PCharStateJump:
                 psGlobalDatabase.Ins.mainChar.SetAnimationSate(2);
-                psGlobalDatabase.Ins.mainChar.ChangeToIdleAfterDelay(0.1f);
+                //psGlobalDatabase.Ins.mainChar.ChangeToIdleAfterDelay(0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateRun:
                 psGlobalDatabase.Ins.mainChar.SetAnimationSate(1);break;

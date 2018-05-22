@@ -59,7 +59,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
 	void Update () {
         if (psGlobalDatabase.Ins.curNpc != null && npcChatBtn.activeSelf) {
             Vector3 npcPos = psGlobalDatabase.Ins.curNpc.transform.position;
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(npcPos.x + 1.0f, npcPos.y + 1.5f, 0));
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(npcPos.x, npcPos.y + 0.5f, 0));
             npcChatBtn.transform.position = new Vector3(screenPos.x,screenPos.y,0);
         }
 	}

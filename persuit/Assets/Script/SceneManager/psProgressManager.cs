@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class psProgressManager : MonoBehaviour
 {
     //读取场景的进度，它的取值范围在0 - 1 之间。
-    private int progress = 0;
+    private float progress = 0;
 
     //进度UI
     public Text sliderText = null;
@@ -19,7 +19,7 @@ public class psProgressManager : MonoBehaviour
     {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.ProgressUI.SetActive(true);
-        slider = psUIRootManager.Ins.ProgressUI.transform.Find("slider").GetComponent<Slider>();
+        slider = psUIRootManager.Ins.ProgressUI.transform.Find("Slider").GetComponent<Slider>();
         sliderText = psUIRootManager.Ins.ProgressUI.transform.Find("sliderText").GetComponent<Text>();
         slider.value = 0.0f;
         StartCoroutine(loadScene());

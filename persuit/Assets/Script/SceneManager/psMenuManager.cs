@@ -10,6 +10,7 @@ public class psMenuManager : MonoBehaviour {
     public Button level1 = null;
     public Button level2 = null;
     public Button level3 = null;
+    public Button quit = null;
 	// Use this for initialization
 	void Start () {
 		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
@@ -22,9 +23,11 @@ public class psMenuManager : MonoBehaviour {
         level1 = loadPnl.transform.Find("level1").GetComponent<Button>();
         level2 = loadPnl.transform.Find("level2").GetComponent<Button>();
         level3 = loadPnl.transform.Find("level3").GetComponent<Button>();
+        quit = loadPnl.transform.Find("quit").GetComponent<Button>();
         level1.onClick.AddListener(EnterLevel1);
         level2.onClick.AddListener(EnterLevel2);
         level3.onClick.AddListener(EnterLevel3);
+        quit.onClick.AddListener(QuitLevelSel);
 
         psUIRootManager.Ins.HideAllUIs();
         loadPnl.SetActive(false);
@@ -54,5 +57,8 @@ public class psMenuManager : MonoBehaviour {
     public void EnterLevel3()
     {
         psSceneManager.LoadSceneProgress("GameLevel3");
+    }
+    public void QuitLevelSel() {
+        loadPnl.SetActive(false);
     }
 }

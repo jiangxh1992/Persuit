@@ -37,7 +37,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
         // left
         InputEventControlller.Ins.OnLeftDown += () =>
         {
-            mMoveDir = 1;
+            mMoveDir = -1;
             mainChar.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             mainChar.mRigidbody.velocity = Vector2.zero;
             mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
@@ -76,5 +76,12 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public void ResetMainChar(){
         mainChar.transform.localPosition = new Vector3(-6,5,0);
         mainChar.gameObject.SetActive(false);
+    }
+
+    public bool IsGameLevel() {
+        if (curLevel.Length >= 9 && curLevel.Substring(0,9) == "GameLevel") {
+            return true;
+        }
+        return false;
     }
 }

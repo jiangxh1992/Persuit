@@ -25,7 +25,8 @@ public class MainCharacter : MonoBehaviour
     {
         Debug.Log("screenwidth:" + Screen.width + "positionX:" + Camera.main.WorldToScreenPoint(transform.position).x);
         //Debug.Log("speed:"+mRigidbody.velocity.y);
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed * psGlobalDatabase.Ins.mMoveDir); // 主角左右移动
+        if(psGlobalDatabase.Ins.mMoveDir != 0)
+            transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed); // 主角左右移动
 
         //  场景移动检测
         if (psGameLevelManager.Ins.GameLevelType == 1 && !psGlobalDatabase.Ins.isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * psGlobalDatabase.Ins.mainCharPosRatio)
