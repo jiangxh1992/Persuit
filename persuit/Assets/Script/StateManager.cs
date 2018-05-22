@@ -20,7 +20,7 @@ public class StateManager {
             case HeaderProto.PCharState.PCharStateRun:
                 psGlobalDatabase.Ins.mainChar.SetAnimationSate(1);break;
             case HeaderProto.PCharState.PCharStateDead:
-                //psGlobalDatabase.Ins.mainChar.SetAnimationSate(100);
+                psGlobalDatabase.Ins.mainChar.SetAnimationSate(10);
                 psGameLevelManager.Ins.OnGameOver();
                 break;
             default: 

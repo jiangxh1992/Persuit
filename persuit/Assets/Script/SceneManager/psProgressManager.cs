@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class psProgressManager : MonoBehaviour
 {
     //读取场景的进度，它的取值范围在0 - 1 之间。
-    private float progress = 0;
+    private int progress = 0;
 
     //进度UI
     public Text sliderText = null;
@@ -22,16 +22,20 @@ public class psProgressManager : MonoBehaviour
         slider = psUIRootManager.Ins.ProgressUI.transform.Find("Slider").GetComponent<Slider>();
         sliderText = psUIRootManager.Ins.ProgressUI.transform.Find("sliderText").GetComponent<Text>();
         slider.value = 0.0f;
-        StartCoroutine(loadScene());
+        //StartCoroutine(loadScene());
     }
 
     private void Update()
     {
+        progress += 1;
         if (sliderText)
         {
-            progress = (int)(async.progress * 100);
+            //progress = (int)(async.progress * 100);
             sliderText.text = "正在玩儿命加载..." + progress + "%";
-            slider.value = async.progress;
+            slider.value = progress/100.0f;
+        }
+        if (progress >= 99) {
+            SceneManager.LoadScene(psGlobalDatabase.Ins.curLevel);
         }
     }
 
