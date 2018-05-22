@@ -13,6 +13,11 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.SetActive(true);
 
         CreateMainChar();
+        if (GameLevelType == 2) {
+            psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            psGlobalDatabase.Ins.moveSpeed = 8.0f;
+        }
+            
         InitUIEvent();
 	}
 
