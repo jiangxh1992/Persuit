@@ -47,6 +47,8 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         ProgressUI = transform.Find("ProgressUI").gameObject;
 
         npcChatBtn.GetComponent<Button>().onClick.AddListener(OpenNpcDialog);
+
+        HideAllUIs();
 	}
 
     void OpenNpcDialog() {
