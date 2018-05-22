@@ -115,7 +115,9 @@ public class MainCharacter : MonoBehaviour
         if (colliderName == "finalTrigger") // 场景切换
         { 
             psGlobalDatabase.Ins.ResetMainChar();
-            psSceneManager.LoadSceneProgress("GameLevel2");
+            string curLevel = psGlobalDatabase.Ins.curLevel;
+            string nextLevel = "GameLevel" + (int.Parse(curLevel.Substring(curLevel.Length - 1))+1);
+            psSceneManager.LoadSceneProgress(nextLevel);
         }
         else if (colliderName == "finalArea") // 关底
         {
