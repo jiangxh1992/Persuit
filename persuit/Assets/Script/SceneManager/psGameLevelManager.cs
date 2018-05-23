@@ -17,6 +17,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
             psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             psGlobalDatabase.Ins.moveSpeed = 8.0f;
         }
+        psGlobalDatabase.Ins.mMoveDir = 0;
             
         InitUIEvent();
 	}
