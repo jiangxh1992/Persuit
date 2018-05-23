@@ -90,19 +90,9 @@ public class MainCharacter : MonoBehaviour
 
     #region public interface
     // 0:toIdle 1:toRun 2:toJump
-    public void SetAnimationSate(int val)
+    public void SetAnimationSate(string param, bool val)
     {
-        
-        mAnimator.SetInteger("AnimState", val);
-    }
-    public void ChangeToIdleAfterDelay(float delay){
-        StartCoroutine(DelayChangeToIdle(delay));
-    }
-    IEnumerator DelayChangeToIdle(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SetAnimationSate(0);
-        yield return 0;
+        mAnimator.SetBool(param, val);
     }
     #endregion
 }

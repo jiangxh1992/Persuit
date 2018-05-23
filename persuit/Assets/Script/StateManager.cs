@@ -12,15 +12,15 @@ public class StateManager {
         // change animation here
         switch (nextState) { 
             case HeaderProto.PCharState.PCharStateIdle:
-                psGlobalDatabase.Ins.mainChar.SetAnimationSate(0); break;
+                psGlobalDatabase.Ins.mainChar.mAnimator.Play("idle"); break;
             case HeaderProto.PCharState.PCharStateJump:
-                psGlobalDatabase.Ins.mainChar.SetAnimationSate(2);
+                psGlobalDatabase.Ins.mainChar.mAnimator.Play("jump");
                 //psGlobalDatabase.Ins.mainChar.ChangeToIdleAfterDelay(0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateRun:
-                psGlobalDatabase.Ins.mainChar.SetAnimationSate(1);break;
+                psGlobalDatabase.Ins.mainChar.mAnimator.Play("run");break;
             case HeaderProto.PCharState.PCharStateDead:
-                psGlobalDatabase.Ins.mainChar.SetAnimationSate(10);
+                psGlobalDatabase.Ins.mainChar.mAnimator.Play("dead");
                 psGameLevelManager.Ins.OnGameOver();
                 break;
             default: 
