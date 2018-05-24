@@ -9,6 +9,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public float MainCharScale = 0.3f;
     public Vector3 MainCharInitPos = Vector3.zero;
     public float MoveSpeed = 5.0f;
+    public float UpForce = 500.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -16,10 +17,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.SetActive(true);
 
         CreateMainChar();
-        if (GameLevelType == 2) {
-            psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
-            psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
-        }
+        psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;
             
         InitUIEvent();
@@ -45,8 +43,8 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
             GameObject gameobj = Instantiate(obj) as GameObject;
             psGlobalDatabase.Ins.mainChar = gameobj.GetComponent<MainCharacter>();
         }
-        psGlobalDatabase.Ins.ResetMainChar();
         psGlobalDatabase.Ins.mainChar.gameObject.SetActive(true);
+        psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
         psGlobalDatabase.Ins.mainChar.transform.position = MainCharInitPos;
         psGlobalDatabase.Ins.mainChar.transform.parent = psPlatformManager.Ins.transform;
     }

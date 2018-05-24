@@ -14,6 +14,9 @@ public class TextureScroller : MonoBehaviour {
     {
         mat = GetComponent<Renderer>().material;
         mat.mainTexture.wrapMode = TextureWrapMode.Repeat;
+    }
+
+    void OnEnable() {
         Vector3 mainPos = Camera.main.transform.position;
         transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
     }

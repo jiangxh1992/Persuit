@@ -75,7 +75,6 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
 
     // 重置主角
     public void ResetMainChar(){
-        mainChar.transform.localPosition = new Vector3(-6,5,0);
         mainChar.gameObject.SetActive(false);
     }
 

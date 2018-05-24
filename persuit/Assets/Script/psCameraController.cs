@@ -10,17 +10,15 @@ public class psCameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (psGlobalDatabase.Ins.IsGameLevel() && psGlobalDatabase.Ins.mainChar != null && !psGlobalDatabase.Ins.isInFinalArea && !psGlobalDatabase.Ins.isBlocked) {
+        if (psGlobalDatabase.Ins.IsGameLevel() && psGlobalDatabase.Ins.mainChar != null) {
             Vector3 mainPos = psGlobalDatabase.Ins.mainChar.transform.position;
-            if (psGameLevelManager.Ins != null && psGameLevelManager.Ins.GameLevelType == 2)
+            if (psGameLevelManager.Ins != null && !psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
             {
-                if(transform.position.x != mainPos.x || transform.position.y != mainPos.y)
-                    transform.position = new Vector3(mainPos.x, mainPos.y, transform.position.z);
+                transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
             }
-            else if (psGameLevelManager.Ins != null && psGameLevelManager.Ins.GameLevelType == 1)
+            if (psGameLevelManager.Ins.GameLevelType == 2)
             {
-                if (transform.position.x != mainPos.x)
-                    transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x, mainPos.y, transform.position.z);
             }
         }
 	}

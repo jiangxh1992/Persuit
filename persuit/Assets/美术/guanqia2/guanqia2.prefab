@@ -2730,7 +2730,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262682845183856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.12, y: 0, z: 0}
+  m_LocalPosition: {x: -10.67, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4883946588562852}
@@ -5671,8 +5671,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 200
   probability: 1
-  stayTime: 1.5
+  stayTime: 0.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114149422142154366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5688,6 +5689,7 @@ MonoBehaviour:
   probability: 1
   stayTime: 1.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114207285850508398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5701,8 +5703,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 500
   probability: 1
-  stayTime: 1.5
+  stayTime: 3
   height: 2
+  moveSpeed: 0.02
 --- !u!114 &114239865156978400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5718,6 +5721,7 @@ MonoBehaviour:
   probability: 1
   stayTime: 1.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114245224217489272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5731,8 +5735,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 500
   probability: 1
-  stayTime: 1.5
+  stayTime: 3
   height: 2
+  moveSpeed: 0.03
 --- !u!114 &114394598999939742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5748,6 +5753,7 @@ MonoBehaviour:
   probability: 0.881
   stayTime: 2
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114404894310959658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5773,8 +5779,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 400
   probability: 1
-  stayTime: 1.5
+  stayTime: 1
   height: 2
+  moveSpeed: 0.02
 --- !u!114 &114459559188272976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5788,8 +5795,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 200
   probability: 0.642
-  stayTime: 1.5
+  stayTime: 2
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114605546010974318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5817,6 +5825,7 @@ MonoBehaviour:
   probability: 1
   stayTime: 1.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114701193881408654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5830,8 +5839,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 300
   probability: 0.881
-  stayTime: 2
+  stayTime: 0.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114744120436615638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5857,8 +5867,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 200
   probability: 0.507
-  stayTime: 1.5
+  stayTime: 1
   height: 2
+  moveSpeed: 0.02
 --- !u!114 &114772925139940578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5874,6 +5885,7 @@ MonoBehaviour:
   probability: 0.798
   stayTime: 1.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114774984395258408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5899,8 +5911,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 200
   probability: 1
-  stayTime: 1.5
+  stayTime: 0.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114975009305879420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5916,6 +5929,7 @@ MonoBehaviour:
   probability: 1
   stayTime: 1.5
   height: 2
+  moveSpeed: 0.01
 --- !u!114 &114995897613424630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5929,8 +5943,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 200
   probability: 1
-  stayTime: 2
+  stayTime: 1
   height: 2
+  moveSpeed: 0.02
 --- !u!212 &212009712519398484
 SpriteRenderer:
   m_ObjectHideFlags: 1
