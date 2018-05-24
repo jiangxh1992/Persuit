@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class psPlatformManager : Singleton<psPlatformManager> {
-    public bool isFrontLayerMoving = false;
     float moveSpeed = 5f;
     float moveDistance = 5;
     float movedDistance = 0;

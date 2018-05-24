@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class psGameLevelManager : Singleton<psGameLevelManager> {
     public int GameLevelType = 1; // 1:横轴 2：纵轴
     public float MainCharScale = 0.3f;
+    public Vector3 MainCharInitPos = Vector3.zero;
     public float MoveSpeed = 5.0f;
 
 	// Use this for initialization
@@ -46,6 +47,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         }
         psGlobalDatabase.Ins.ResetMainChar();
         psGlobalDatabase.Ins.mainChar.gameObject.SetActive(true);
+        psGlobalDatabase.Ins.mainChar.transform.position = MainCharInitPos;
         psGlobalDatabase.Ins.mainChar.transform.parent = psPlatformManager.Ins.transform;
     }
 	

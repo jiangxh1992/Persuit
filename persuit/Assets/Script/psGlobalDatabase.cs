@@ -17,6 +17,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public float mainCharPosRatio = 0.5f;
     public int mMoveDir = 0;
     public bool isInFinalArea = false; // 是否到达关底
+    public bool isBlocked = false; // 是否被阻挡
 
 
     public string curLevel = "Wellcome"; // 当前场景

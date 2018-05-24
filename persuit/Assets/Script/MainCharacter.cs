@@ -10,7 +10,7 @@ public class MainCharacter : MonoBehaviour
     public Animator mAnimator = null;
     public AudioSource mAudioSource = null;
     public AudioClip[] sounds =null;
-
+    float mainPosX = 0;
     #region lifecycle
     void Start()
     {
@@ -18,6 +18,7 @@ public class MainCharacter : MonoBehaviour
         mAnimator = transform.Find("rendernode").GetComponent<Animator>();
         mAudioSource = GetComponent<AudioSource>();
         mRigidbody = GetComponent<Rigidbody2D>();
+        mainPosX = transform.position.x;
     }
 
     // Update is called once per frame
@@ -27,14 +28,15 @@ public class MainCharacter : MonoBehaviour
         //Debug.Log("speed:"+mRigidbody.velocity.y);
         if(psGlobalDatabase.Ins.mMoveDir != 0)
             transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed); // 主角左右移动
-
-        //  场景移动检测
-        if (psGameLevelManager.Ins.GameLevelType == 1 && !psGlobalDatabase.Ins.isInFinalArea && Camera.main.WorldToScreenPoint(transform.position).x > Screen.width * psGlobalDatabase.Ins.mainCharPosRatio)
-        {
-            psPlatformManager.Ins.isFrontLayerMoving = true;
-        }
-
         //Debug.Log("curstate:" + (int)mStateManager.mCurState);
+        if (Mathf.Abs(transform.position.x - mainPosX) > 0.01f)
+        {
+            mainPosX = transform.position.x;
+            psGlobalDatabase.Ins.isBlocked = false;
+        }
+        else {
+            psGlobalDatabase.Ins.isBlocked = true;
+        }
     }
     // 主角碰撞检测
     void OnCollisionEnter2D(Collision2D collision)
@@ -64,10 +66,9 @@ public class MainCharacter : MonoBehaviour
             string nextLevel = "GameLevel" + (int.Parse(curLevel.Substring(curLevel.Length - 1))+1);
             psSceneManager.LoadSceneProgress(nextLevel);
         }
-        else if (colliderName == "finalArea") // 关底
+        else if (colliderName == "finalArea") // 镜头不跟随区域
         {
             psGlobalDatabase.Ins.isInFinalArea = true;
-            psPlatformManager.Ins.isFrontLayerMoving = false;
         }
         else if (colliderName.Length >= 6 && colliderName.Substring(0, 6) == "killer") // 死亡
         {
@@ -78,6 +79,15 @@ public class MainCharacter : MonoBehaviour
             other.gameObject.GetComponent<psNpcManager>().OnWakeUp();
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        string colliderName = other.gameObject.name;
+        if (colliderName == "finalArea") {
+            psGlobalDatabase.Ins.isInFinalArea = false;
+        }
+    }
+
     #endregion
 
     void PlayLandEffect() {
