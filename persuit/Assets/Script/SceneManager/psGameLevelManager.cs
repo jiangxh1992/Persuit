@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class psGameLevelManager : Singleton<psGameLevelManager> {
     public int GameLevelType = 1; // 1:横轴 2：纵轴
+    public float MainCharScale = 0.3f;
+    public float MoveSpeed = 5.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +16,8 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 
         CreateMainChar();
         if (GameLevelType == 2) {
-            psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            psGlobalDatabase.Ins.moveSpeed = 8.0f;
+            psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
+            psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         }
         psGlobalDatabase.Ins.mMoveDir = 0;
             
