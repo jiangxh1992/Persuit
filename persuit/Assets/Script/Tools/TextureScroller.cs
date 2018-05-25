@@ -16,13 +16,11 @@ public class TextureScroller : MonoBehaviour {
         mat.mainTexture.wrapMode = TextureWrapMode.Repeat;
     }
 
-    void OnEnable() {
-        Vector3 mainPos = Camera.main.transform.position;
-        transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
-    }
-
     void Update()
     {
+        Vector3 mainPos = Camera.main.transform.position;
+        transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
+
         float curX = psGlobalDatabase.Ins.mainChar.transform.position.x;
         if (!psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
         {
@@ -30,8 +28,5 @@ public class TextureScroller : MonoBehaviour {
             offset = speed * timeTick;
             mat.mainTextureOffset = new Vector2(offset, 0);
         }
-
-        Vector3 mainPos = Camera.main.transform.position;
-        transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
     }
 }

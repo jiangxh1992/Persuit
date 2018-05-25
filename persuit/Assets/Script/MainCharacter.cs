@@ -53,6 +53,8 @@ public class MainCharacter : MonoBehaviour
             else {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
+            if (!psGlobalDatabase.Ins.isGameStart)
+                psGlobalDatabase.Ins.isGameStart = true;
         }
     }
     // 触发器

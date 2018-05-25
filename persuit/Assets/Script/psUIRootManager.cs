@@ -14,10 +14,8 @@ public class psUIRootManager : Singleton<psUIRootManager> {
     // 游戏界面
     public GameObject GameUI = null;
     public GameObject npcDialog = null;
-    // 操作按钮
-    public GameObject btn_left = null;
-    public GameObject btn_right = null;
-    public GameObject btn_jump = null;
+    public GameObject bibleDialog = null;
+
     // 结算界面
     public GameObject gameoverPnl = null;
     public GameObject btn_home = null;
@@ -29,31 +27,19 @@ public class psUIRootManager : Singleton<psUIRootManager> {
 	// Use this for initialization
 	void Start () {
         WellComeUI = transform.Find("WellComeUI").gameObject;
-
         MenuUI = transform.Find("MenuUI").gameObject;
-
         GameUI = transform.Find("GameUI").gameObject;
         npcDialog = transform.Find("GameUI/DialogUI/npcDialog").gameObject;
-        npcDialog.SetActive(false);
-        btn_left = transform.Find("GameUI/BottomUI/btn_left").gameObject;
-        btn_right = transform.Find("GameUI/BottomUI/btn_right").gameObject;
-        btn_jump = transform.Find("GameUI/BottomUI/btn_jump").gameObject;
+        bibleDialog = transform.Find("GameUI/BiblePnl").gameObject;
         gameoverPnl = transform.Find("GameUI/GameOverPnl").gameObject;
-        gameoverPnl.SetActive(false);
-        btn_home = gameoverPnl.transform.Find("btn_home").gameObject;
-        btn_restart = gameoverPnl.transform.Find("btn_restart").gameObject;
         npcChatBtn = transform.Find("GameUI/DialogUI/npcChatBtn").gameObject;
-
         ProgressUI = transform.Find("ProgressUI").gameObject;
 
-        npcChatBtn.GetComponent<Button>().onClick.AddListener(OpenNpcDialog);
-
         HideAllUIs();
+        WellComeUI.SetActive(true);
 	}
 
-    void OpenNpcDialog() {
-        npcDialog.SetActive(!npcDialog.activeSelf);
-    }
+    
 	
 	// Update is called once per frame
 	void Update () {

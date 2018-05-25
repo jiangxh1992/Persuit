@@ -11,6 +11,8 @@ public class psMenuManager : MonoBehaviour {
     public Button level2 = null;
     public Button level3 = null;
     public Button quit = null;
+
+    public Image mask = null;
 	// Use this for initialization
 	void Start () {
 		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
@@ -29,6 +31,8 @@ public class psMenuManager : MonoBehaviour {
         level3.onClick.AddListener(EnterLevel3);
         quit.onClick.AddListener(QuitLevelSel);
 
+        mask = psUIRootManager.Ins.MenuUI.transform.Find("mask").GetComponent<Image>();
+
         psUIRootManager.Ins.HideAllUIs();
         loadPnl.SetActive(false);
         psUIRootManager.Ins.MenuUI.SetActive(true);
@@ -36,7 +40,9 @@ public class psMenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (mask.color.a > 0) {
+            mask.color -= new Color(0, 0, 0, 0.02f);
+        }
 	}
 
     public void StartNewGame() {

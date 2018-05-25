@@ -8,6 +8,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public int GameLevelType = 1; // 1:横轴 2：纵轴
     public float MainCharScale = 0.3f;
     public Vector3 MainCharInitPos = Vector3.zero;
+    public float CameraInitPosX = 0;
     public float MoveSpeed = 5.0f;
     public float UpForce = 500.0f;
 
@@ -19,13 +20,19 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         CreateMainChar();
         psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;
+        Camera.main.transform.position = new Vector3(CameraInitPosX, Camera.main.transform.position.y, Camera.main.transform.position.z);
             
         InitUIEvent();
 	}
 
     void InitUIEvent() {
-        psUIRootManager.Ins.btn_home.GetComponent<Button>().onClick.AddListener(Home);
-        psUIRootManager.Ins.btn_restart.GetComponent<Button>().onClick.AddListener(Restart);
+        psUIRootManager.Ins.gameoverPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
+        psUIRootManager.Ins.gameoverPnl.transform.Find("btn_restart").GetComponent<Button>().onClick.AddListener(Restart);
+        psUIRootManager.Ins.GameUI.transform.Find("DialogUI/npcChatBtn").GetComponent<Button>().onClick.AddListener(OpenNpcDialog);
+        psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").GetComponent<Button>().onClick.AddListener(Diamond);
+        psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").GetComponent<Button>().onClick.AddListener(OpenBible);
+        psUIRootManager.Ins.bibleDialog.transform.Find("Panel/close").GetComponent<Button>().onClick.AddListener(OpenBible);
+        psUIRootManager.Ins.GameUI.transform.Find("TopUI/stop").GetComponent<Button>().onClick.AddListener(Stop);
     }
 
     void Home()
@@ -35,6 +42,17 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     void Restart()
     {
         psSceneManager.LoadScene(psGlobalDatabase.Ins.curLevel);
+    }
+    void Diamond() { 
+    }
+    void OpenBible() {
+        psUIRootManager.Ins.bibleDialog.SetActive(!psUIRootManager.Ins.bibleDialog.activeSelf);
+    }
+    void Stop() { 
+    }
+    void OpenNpcDialog()
+    {
+        psUIRootManager.Ins.npcDialog.SetActive(!psUIRootManager.Ins.npcDialog.activeSelf);
     }
 
     void CreateMainChar() {
@@ -59,5 +77,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.mMoveDir = 0;
         psGlobalDatabase.Ins.ResetMainChar();
         psUIRootManager.Ins.gameoverPnl.SetActive(true);
+        psGlobalDatabase.Ins.isGameStart = false;
     }
 }
