@@ -33,6 +33,8 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").GetComponent<Button>().onClick.AddListener(OpenBible);
         psUIRootManager.Ins.bibleDialog.transform.Find("Panel/close").GetComponent<Button>().onClick.AddListener(OpenBible);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/stop").GetComponent<Button>().onClick.AddListener(Stop);
+        psUIRootManager.Ins.stopPnl.transform.Find("btn_resume").GetComponent<Button>().onClick.AddListener(Resume);
+        psUIRootManager.Ins.stopPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
     }
 
     void Home()
@@ -48,11 +50,15 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     void OpenBible() {
         psUIRootManager.Ins.bibleDialog.SetActive(!psUIRootManager.Ins.bibleDialog.activeSelf);
     }
-    void Stop() { 
+    void Stop() {
+        psUIRootManager.Ins.stopPnl.SetActive(true);
     }
     void OpenNpcDialog()
     {
         psUIRootManager.Ins.npcDialog.SetActive(!psUIRootManager.Ins.npcDialog.activeSelf);
+    }
+    void Resume() {
+        psUIRootManager.Ins.stopPnl.SetActive(false);
     }
 
     void CreateMainChar() {
