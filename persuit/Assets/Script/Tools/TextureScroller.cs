@@ -22,7 +22,7 @@ public class TextureScroller : MonoBehaviour {
         transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
 
         float curX = psGlobalDatabase.Ins.mainChar.transform.position.x;
-        if (!psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
+        if (psGameLevelManager.Ins != null && !psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
         {
             timeTick += 0.02f * psGlobalDatabase.Ins.mMoveDir;
             offset = speed * timeTick;

@@ -29,7 +29,7 @@ public class MainCharacter : MonoBehaviour
         if(psGlobalDatabase.Ins.mMoveDir != 0)
             transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed); // 主角左右移动
         //Debug.Log("curstate:" + (int)mStateManager.mCurState);
-        if (Mathf.Abs(transform.position.x - mainPosX) > 0.01f)
+        if (Mathf.Abs(transform.position.x - mainPosX) > 0.1f)
         {
             mainPosX = transform.position.x;
             psGlobalDatabase.Ins.isBlocked = false;
