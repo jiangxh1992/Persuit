@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour
 {
-    // Use this for initialization
     public Rigidbody2D mRigidbody = null;
     public StateManager mStateManager = null;
     public Animator mAnimator = null;
     public AudioSource mAudioSource = null;
     public AudioClip[] sounds =null;
     float mainPosX = 0;
+
+    public GameObject effect_dust = null;
+    public GameObject effect_enter = null;
     #region lifecycle
     void Start()
     {
@@ -19,9 +21,11 @@ public class MainCharacter : MonoBehaviour
         mAudioSource = GetComponent<AudioSource>();
         mRigidbody = GetComponent<Rigidbody2D>();
         mainPosX = transform.position.x;
+
+        effect_dust = transform.Find("effect_dust").gameObject;
+        effect_enter = transform.Find("effect_enter").gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Debug.Log("screenwidth:" + Screen.width + "positionX:" + Camera.main.WorldToScreenPoint(transform.position).x);
@@ -60,8 +64,10 @@ public class MainCharacter : MonoBehaviour
     {
         string colliderName = other.gameObject.name;
         if(colliderName == "startArea"){
-            if (!psGlobalDatabase.Ins.isGameStart)
+            if (!psGlobalDatabase.Ins.isGameStart) {
                 psGlobalDatabase.Ins.isGameStart = true;
+                transform.Find("effect_enter").gameObject.SetActive(false);
+            }
         }
         else if (colliderName == "finalTrigger") // 场景切换
         { 

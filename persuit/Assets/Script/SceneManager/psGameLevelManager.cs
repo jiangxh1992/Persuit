@@ -69,6 +69,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
         psGlobalDatabase.Ins.mainChar.transform.position = MainCharInitPos;
         psGlobalDatabase.Ins.mainChar.transform.parent = psPlatformManager.Ins.transform;
+        psGlobalDatabase.Ins.mainChar.transform.Find("effect_enter").gameObject.SetActive(true);
 
         psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;

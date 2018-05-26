@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &45316622
+--- !u!1001 &1104757741
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -155,38 +155,6 @@ Prefab:
     - target: {fileID: 1760703331302086, guid: afa00168938753f41bcaa85881587c2a, type: 2}
       propertyPath: m_Name
       value: guanqia1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -32.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.697
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 27.406992
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 13.716047
-      objectReference: {fileID: 0}
-    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -32.733
-      objectReference: {fileID: 0}
-    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.804
-      objectReference: {fileID: 0}
-    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 27.0309
-      objectReference: {fileID: 0}
-    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 13.501234
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}
@@ -331,7 +299,7 @@ Prefab:
     - target: {fileID: 114389419918836696, guid: e00210e69f8a8434c9408d36a626515b,
         type: 2}
       propertyPath: MainCharInitPos.y
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114389419918836696, guid: e00210e69f8a8434c9408d36a626515b,
         type: 2}
