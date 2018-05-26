@@ -243,7 +243,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.3719525
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -266,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856863244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: -10}
+  m_LocalPosition: {x: 0.5, y: 2.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -321,6 +321,40 @@ Prefab:
     - target: {fileID: 4718715362675524, guid: b4fba57857b6dfc46907490829a7656e, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61299019416029656, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -6.683604
+      objectReference: {fileID: 0}
+    - target: {fileID: 61299019416029656, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 7.000251
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719254899905976, guid: b4fba57857b6dfc46907490829a7656e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 114701193881408654, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: period
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605546010974318, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114744120436615638, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114774984395258408, guid: b4fba57857b6dfc46907490829a7656e,
+        type: 2}
+      propertyPath: speed
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4fba57857b6dfc46907490829a7656e, type: 2}
