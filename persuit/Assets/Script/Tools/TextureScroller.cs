@@ -18,15 +18,18 @@ public class TextureScroller : MonoBehaviour {
 
     void Update()
     {
-        Vector3 mainPos = Camera.main.transform.position;
-        transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
+        if (psGameLevelManager.Ins == null || psGlobalDatabase.Ins.mainChar == null) return;
 
         float curX = psGlobalDatabase.Ins.mainChar.transform.position.x;
-        if (psGameLevelManager.Ins != null && !psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
+        if (!psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea && psGlobalDatabase.Ins.isGameStart)
         {
-            timeTick += 0.02f * psGlobalDatabase.Ins.mMoveDir;
+            // 纹理滚动
+            timeTick += 0.01f * psGlobalDatabase.Ins.mMoveDir;
             offset = speed * timeTick;
             mat.mainTextureOffset = new Vector2(offset, 0);
+
+            Vector3 cameraPos = psGlobalDatabase.Ins.mainChar.transform.position;//psGameLevelManager.Ins.camera.transform.position;
+            transform.position = new Vector3(cameraPos.x, transform.position.y, transform.position.z);
         }
     }
 }

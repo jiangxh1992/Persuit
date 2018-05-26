@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class psCameraController : MonoBehaviour {
 
-	// Use this for initialization
+    Vector3 targetPos = Vector3.zero;
 	void Start () {
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        if (psGlobalDatabase.Ins.IsGameLevel() && psGlobalDatabase.Ins.mainChar != null) {
-            Vector3 mainPos = psGlobalDatabase.Ins.mainChar.transform.position;
-            if (psGameLevelManager.Ins != null && !psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea)
+        if (psGameLevelManager.Ins == null ||psGlobalDatabase.Ins.mainChar == null) return;
+        targetPos = psGlobalDatabase.Ins.mainChar.transform.position;
+
+        if (psGlobalDatabase.Ins.isGameStart) {
+            
+            // 横向移动
+            if (!psGlobalDatabase.Ins.isInFinalArea)
             {
-                transform.position = new Vector3(mainPos.x, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, targetPos.x,0.1f), transform.position.y, transform.position.z);
             }
+
+            // 纵向移动
             if (psGameLevelManager.Ins.GameLevelType == 2)
             {
-                transform.position = new Vector3(transform.position.x, mainPos.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, targetPos.y,0.1f), transform.position.z);
             }
         }
 	}

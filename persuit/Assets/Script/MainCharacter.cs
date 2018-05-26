@@ -53,15 +53,17 @@ public class MainCharacter : MonoBehaviour
             else {
                 mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
             }
-            if (!psGlobalDatabase.Ins.isGameStart)
-                psGlobalDatabase.Ins.isGameStart = true;
         }
     }
     // 触发器
     void OnTriggerEnter2D(Collider2D other)
     {
         string colliderName = other.gameObject.name;
-        if (colliderName == "finalTrigger") // 场景切换
+        if(colliderName == "startArea"){
+            if (!psGlobalDatabase.Ins.isGameStart)
+                psGlobalDatabase.Ins.isGameStart = true;
+        }
+        else if (colliderName == "finalTrigger") // 场景切换
         { 
             psGlobalDatabase.Ins.ResetMainChar();
             string curLevel = psGlobalDatabase.Ins.curLevel;

@@ -8,23 +8,21 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public int GameLevelType = 1; // 1:横轴 2：纵轴
     public float MainCharScale = 0.3f;
     public Vector3 MainCharInitPos = Vector3.zero;
-    public float CameraInitPosX = 0;
     public float MoveSpeed = 5.0f;
     public float UpForce = 500.0f;
+    public Camera camera = null;
 
-	// Use this for initialization
 	void Start () {
-        psUIRootManager.Ins.HideAllUIs();
-        psUIRootManager.Ins.GameUI.SetActive(true);
-
+        InitUI();
         CreateMainChar();
-        psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
-        psGlobalDatabase.Ins.mMoveDir = 0;
-        Camera.main.transform.position = new Vector3(CameraInitPosX, Camera.main.transform.position.y, Camera.main.transform.position.z);
-            
         InitUIEvent();
 	}
-
+    void InitUI() {
+        psUIRootManager.Ins.HideAllUIs();
+        psUIRootManager.Ins.GameUI.SetActive(true);
+        psUIRootManager.Ins.GameUI.transform.Find("BottomUI").gameObject.SetActive(true);
+        psUIRootManager.Ins.GameUI.transform.Find("TopUI").gameObject.SetActive(true);
+    }
     void InitUIEvent() {
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_restart").GetComponent<Button>().onClick.AddListener(Restart);
@@ -34,7 +32,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.bibleDialog.transform.Find("Panel/close").GetComponent<Button>().onClick.AddListener(OpenBible);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/stop").GetComponent<Button>().onClick.AddListener(Stop);
         psUIRootManager.Ins.stopPnl.transform.Find("btn_resume").GetComponent<Button>().onClick.AddListener(Resume);
-        psUIRootManager.Ins.stopPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
     }
 
     void Home()
@@ -61,6 +58,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.stopPnl.SetActive(false);
     }
 
+    // 创建主角
     void CreateMainChar() {
         if (psGlobalDatabase.Ins.mainChar == null) {
             Object obj = Resources.Load("Prefab/MainCharacter", typeof(GameObject));
@@ -71,6 +69,9 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
         psGlobalDatabase.Ins.mainChar.transform.position = MainCharInitPos;
         psGlobalDatabase.Ins.mainChar.transform.parent = psPlatformManager.Ins.transform;
+
+        psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
+        psGlobalDatabase.Ins.mMoveDir = 0;
     }
 	
 	// Update is called once per frame

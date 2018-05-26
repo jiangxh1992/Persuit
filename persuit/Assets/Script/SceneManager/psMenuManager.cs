@@ -15,6 +15,10 @@ public class psMenuManager : MonoBehaviour {
     public Image mask = null;
 	// Use this for initialization
 	void Start () {
+        if (psGlobalDatabase.Ins.isFistLogin) {
+            Destroy(this);
+            return;
+        }
 		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
         btn_start.onClick.AddListener(StartNewGame);
 
@@ -31,7 +35,8 @@ public class psMenuManager : MonoBehaviour {
         level3.onClick.AddListener(EnterLevel3);
         quit.onClick.AddListener(QuitLevelSel);
 
-        mask = psUIRootManager.Ins.MenuUI.transform.Find("mask").GetComponent<Image>();
+        mask = psUIRootManager.Ins.transform.Find("mask").GetComponent<Image>();
+        mask.gameObject.SetActive(true);
 
         psUIRootManager.Ins.HideAllUIs();
         loadPnl.SetActive(false);

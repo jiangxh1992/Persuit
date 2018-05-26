@@ -4,7 +4,7 @@ public class FloatingAnimation : MonoBehaviour
 {
     private float radian = 0;           // 弧度
     public float speed = 0.03f; // 每次变化的弧度
-    public float radius = 2.5f;        // 半径
+    public float radius = 0.1f;        // 半径
     private Vector3 oldPos;             // 开始时候的坐标
 
     private void Start()
