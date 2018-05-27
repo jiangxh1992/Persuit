@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LogoManager : MonoBehaviour {
     public GameObject Logo = null;
-    public float logoDelay = 1.0f;
+    public float logoDelay = 0.0f;
 	void Start () {
         if (!psGlobalDatabase.Ins.isFistLogin) {
             Destroy(this);

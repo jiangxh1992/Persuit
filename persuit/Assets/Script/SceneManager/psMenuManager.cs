@@ -19,6 +19,7 @@ public class psMenuManager : MonoBehaviour {
             Destroy(this);
             return;
         }
+        psUIRootManager.Ins.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
 		btn_start = psUIRootManager.Ins.MenuUI.transform.Find("btn_start").GetComponent<Button>();
         btn_start.onClick.AddListener(StartNewGame);
 
@@ -36,6 +37,7 @@ public class psMenuManager : MonoBehaviour {
         quit.onClick.AddListener(QuitLevelSel);
 
         mask = psUIRootManager.Ins.transform.Find("mask").GetComponent<Image>();
+        mask.color = new Color(0, 0, 0, 1.0f);
         mask.gameObject.SetActive(true);
 
         psUIRootManager.Ins.HideAllUIs();

@@ -29,6 +29,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
         // 跳
         InputEventControlller.Ins.OnUpArrowDown += () =>
         {
+            if (!isGameStart) return;
             if (jumpCount > maxJump) return;
             ++jumpCount;
 
@@ -39,6 +40,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
         // left
         InputEventControlller.Ins.OnLeftDown += () =>
         {
+            if (!isGameStart) return;
             mMoveDir = -1;
             mainChar.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             mainChar.mRigidbody.velocity = Vector2.zero;
@@ -47,6 +49,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
         // right
         InputEventControlller.Ins.OnRightDown += () =>
         {
+            if (!isGameStart) return;
             mMoveDir = 1;
             mainChar.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             mainChar.mRigidbody.velocity = Vector2.zero;
@@ -55,16 +58,19 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
         // 按键松开
         InputEventControlller.Ins.OnLeftUp += () =>
         {
+            if (!isGameStart) return;
             mMoveDir = 0;
             mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
         InputEventControlller.Ins.OnRightUp += () =>
         {
+            if (!isGameStart) return;
             mMoveDir = 0;
             mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
         InputEventControlller.Ins.OnUpArrowUp += () =>
         {
+            if (!isGameStart) return;
             //mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
 	}

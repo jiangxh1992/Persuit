@@ -12,7 +12,12 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public float UpForce = 500.0f;
     public Camera camera = null;
 
+    bool npcDialog = false;
+    public GameObject[] dialogs = new GameObject[2];
+
+
 	void Start () {
+        psUIRootManager.Ins.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         InitUI();
         CreateMainChar();
         InitUIEvent();
@@ -22,6 +27,8 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.SetActive(true);
         psUIRootManager.Ins.GameUI.transform.Find("BottomUI").gameObject.SetActive(true);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI").gameObject.SetActive(true);
+        dialogs[0] = psUIRootManager.Ins.npcDialog.transform.Find("dialog0").gameObject;
+        dialogs[1] = psUIRootManager.Ins.npcDialog.transform.Find("dialog1").gameObject;
     }
     void InitUIEvent() {
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
@@ -52,7 +59,32 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     }
     void OpenNpcDialog()
     {
-        psUIRootManager.Ins.npcDialog.SetActive(!psUIRootManager.Ins.npcDialog.activeSelf);
+        //psUIRootManager.Ins.npcDialog.SetActive(!psUIRootManager.Ins.npcDialog.activeSelf);
+        GameObject obj = psUIRootManager.Ins.npcDialog;
+        obj.SetActive(true);
+        if (npcDialog)
+        {
+            iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 1300.0f, obj.transform.position.z), 1.0f);
+            psGlobalDatabase.Ins.isGameStart = true;
+        }
+        else {
+            iTween.MoveTo(obj,new Vector3(obj.transform.position.x, 860.0f,obj.transform.position.z),1.0f);
+            StartCoroutine(DialogShit());
+            psGlobalDatabase.Ins.isGameStart = false;
+        }
+        npcDialog = !npcDialog;
+    }
+
+    IEnumerator DialogShit() {
+        dialogs[0].SetActive(true);
+        dialogs[1].SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        //iTween.ColorTo(dialogs[0],new Color(255.0f,255.0f,255.0f,0.0f),2.0f);
+        //iTween.ColorTo(dialogs[1],new Color(255.0f,255.0f,255.0f,1.0f),3.0f);
+        dialogs[0].SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        dialogs[1].SetActive(true);
+        yield return 0;
     }
     void Resume() {
         psUIRootManager.Ins.stopPnl.SetActive(false);
@@ -83,8 +115,14 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public void OnGameOver()
     {
         psGlobalDatabase.Ins.mMoveDir = 0;
+        psGlobalDatabase.Ins.isGameStart = false;
+        StartCoroutine(GameOver());
+    }
+
+    IEnumerator GameOver() {
+        yield return new WaitForSeconds(2.0f);
         psGlobalDatabase.Ins.ResetMainChar();
         psUIRootManager.Ins.gameoverPnl.SetActive(true);
-        psGlobalDatabase.Ins.isGameStart = false;
+        yield return 0;
     }
 }

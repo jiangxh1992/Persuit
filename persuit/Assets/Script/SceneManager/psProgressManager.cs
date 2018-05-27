@@ -31,7 +31,7 @@ public class psProgressManager : MonoBehaviour
         if (sliderText)
         {
             //progress = (int)(async.progress * 100);
-            sliderText.text = "正在玩儿命加载..." + progress + "%";
+            sliderText.text = progress + "%";
             slider.value = progress/100.0f;
         }
         if (progress >= 99) {

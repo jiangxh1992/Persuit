@@ -329,6 +329,7 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: 33b5c9c1e2d04744bbe313a40a41815a, type: 3}
   - {fileID: 8300000, guid: 5baa2d42f0e0f24468f21fc57f0c670f, type: 3}
+  - {fileID: 8300000, guid: 9d5a76e66d4fb9044b62b19dc456a84b, type: 3}
   effect_dust: {fileID: 0}
   effect_enter: {fileID: 0}
 --- !u!212 &212202853649986504

@@ -14,18 +14,23 @@ public class StateManager {
             case HeaderProto.PCharState.PCharStateIdle:
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("idle");
                 psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(false);
+                psGlobalDatabase.Ins.mainChar.PlayEffect(100);
                 break;
             case HeaderProto.PCharState.PCharStateJump:
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("jump");
+                psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(false);
+                psGlobalDatabase.Ins.mainChar.PlayEffect(100);
                 //psGlobalDatabase.Ins.mainChar.ChangeToIdleAfterDelay(0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateRun:
                 psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(true);
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("run");
+                psGlobalDatabase.Ins.mainChar.PlayEffect(0);
                 break;
             case HeaderProto.PCharState.PCharStateDead:
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("dead");
                 psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(false);
+                psGlobalDatabase.Ins.mainChar.PlayEffect(2);
                 psGameLevelManager.Ins.OnGameOver();
                 break;
             default: 

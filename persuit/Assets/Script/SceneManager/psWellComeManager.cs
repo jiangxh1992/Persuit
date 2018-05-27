@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class psWellComeManager : MonoBehaviour {
+    public float duration = 12.0f;
     public Transform text = null;
     public float scrollSpeed = 50.0f;
-    bool isMasking = false;
+    bool isMaskingShow = true;
+    bool isMaskingFade = false;
     public Image mask = null;
 
 	void Start () {
@@ -18,14 +20,16 @@ public class psWellComeManager : MonoBehaviour {
 	
 	void Update () {
         text.Translate(new Vector2(0, 1) * Time.deltaTime * scrollSpeed);
-        if (isMasking)
+        if (isMaskingFade)
             mask.color += new Color(0, 0, 0,0.01f);
+        if (!isMaskingFade && isMaskingShow && mask.color.a >0)
+            mask.color -= new Color(0, 0, 0, 0.05f);
 	}
 
     IEnumerator EnterMenu()
     {
-        yield return new WaitForSeconds(2.0f);
-        isMasking = true;
+        yield return new WaitForSeconds(duration);
+        isMaskingFade = true;
         yield return new WaitForSeconds(1.5f);
         psGlobalDatabase.Ins.isFistLogin = false;
         gameObject.AddComponent<psMenuManager>();

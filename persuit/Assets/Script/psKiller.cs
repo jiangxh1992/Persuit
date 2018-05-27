@@ -14,17 +14,29 @@ public class psKiller : MonoBehaviour {
     public float height = 1.0f;
     [Tooltip("动画速度")]
     public float moveSpeed = 0.01f;
+    public AudioSource mAudioSource = null;
 
     float timeTick = 0;
     float initHeight = 0;
     int isAction = 0;
-	// Use this for initialization
+    bool isVisible = false;
+
 	void Start () {
         initHeight = transform.position.y;
+        mAudioSource = GetComponent<AudioSource>();
 	}
+
+    void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+    void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
 	
-	// Update is called once per frame
 	void Update () {
+        if (!isVisible) return;
         if (isAction == 0) {
             timeTick++; // 蓄力
             if (timeTick >= period)
@@ -35,6 +47,7 @@ public class psKiller : MonoBehaviour {
                 {
                     isAction = 1; // 开始网上冒
                     timeTick = 0;
+                    mAudioSource.Play();
                 }
             }
         }

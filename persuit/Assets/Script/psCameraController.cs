@@ -9,7 +9,7 @@ public class psCameraController : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (psGameLevelManager.Ins == null ||psGlobalDatabase.Ins.mainChar == null) return;
+        if (!psGlobalDatabase.Ins.isGameStart || psGameLevelManager.Ins == null ||psGlobalDatabase.Ins.mainChar == null) return;
         targetPos = psGlobalDatabase.Ins.mainChar.transform.position;
 
         if (psGlobalDatabase.Ins.isGameStart) {

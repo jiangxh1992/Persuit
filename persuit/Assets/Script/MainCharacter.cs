@@ -48,7 +48,7 @@ public class MainCharacter : MonoBehaviour
         string colliderName = collision.gameObject.name;
         if (colliderName.Length >=8 &&colliderName.Substring(0, 8) == "platform") // 落地
         {
-            PlayLandEffect();
+            PlayEffect(1);
             psGlobalDatabase.Ins.jumpCount = 0;
             if (psGlobalDatabase.Ins.mMoveDir == 0)
             {
@@ -100,19 +100,28 @@ public class MainCharacter : MonoBehaviour
 
     #endregion
 
-    void PlayLandEffect() {
-        if (mAudioSource != null) {
-            mAudioSource.clip = sounds[1];
-            mAudioSource.Play();
+    public void PlayEffect(int index) {
+        if (mAudioSource == null) return;
+        if (index == 100) {
+            mAudioSource.Stop();
+            return;
         }
+        mAudioSource.clip = sounds[index];
+        if (index == 0) { // 脚步
+            mAudioSource.loop = true;
+        }
+        else if (index == 1) { // 落地
+            mAudioSource.loop = false;
+        }else if(index == 2){ //落水
+            if (psGlobalDatabase.Ins.curLevel != "GameLevel1") return;
+            mAudioSource.loop = false;
+        }
+        mAudioSource.Play();
     }
 
-
-    #region public interface
     // 0:toIdle 1:toRun 2:toJump
     public void SetAnimationSate(string param, bool val)
     {
         mAnimator.SetBool(param, val);
     }
-    #endregion
 }
