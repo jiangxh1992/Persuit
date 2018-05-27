@@ -52,8 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameLevelType: 2
-  MainCharScale: 0.4
-  MainCharInitPos: {x: 2, y: 16, z: 1}
+  MainCharScale: 0.3
+  MainCharInitPos: {x: 2, y: 13, z: 1}
   MoveSpeed: 8
   UpForce: 800
   camera: {fileID: 0}
+  dialogs:
+  - {fileID: 0}
+  - {fileID: 0}
