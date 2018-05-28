@@ -84,10 +84,6 @@ public class MainCharacter : MonoBehaviour
         {
             mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
         }
-        else if (colliderName.Length >= 3 && colliderName.Substring(0, 3) == "npc") // npc
-        {
-            other.gameObject.GetComponent<psNpcManager>().OnWakeUp();
-        }
     }
 
     void OnTriggerExit2D(Collider2D other)

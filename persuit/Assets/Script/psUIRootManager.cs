@@ -17,6 +17,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
     public GameObject bibleDialog = null;
     public GameObject stopPnl = null;
     public GameObject toolPnl = null;
+    public GameObject gameBtn = null;
 
     // 结算界面
     public GameObject gameoverPnl = null;

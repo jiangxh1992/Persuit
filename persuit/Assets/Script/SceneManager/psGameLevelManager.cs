@@ -13,6 +13,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public Camera camera = null;
 
     bool npcDialog = false;
+    int curBileItem = 0;
     public GameObject[] dialogs = new GameObject[2];
 
 
@@ -22,6 +23,38 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         CreateMainChar();
         InitUIEvent();
 	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("");
+            RaycastHit hit;
+            Vector2 screenPosition = Input.mousePosition;
+            var ray = psGameLevelManager.Ins.camera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
+            if (Physics.Raycast(ray, out hit))//判断是否点击到实例物体上  
+            {
+                string name = hit.transform.gameObject.name;
+                if (hit.transform.gameObject.name == "npc")
+                {
+                    hit.transform.parent.GetComponent<psNpcManager>().OnWakeUp();
+                }
+                else if(name.Length >= 12 && name.Substring(0,11) == "grass_bible"){
+                    curBileItem = int.Parse(name.Substring(11,name.Length-11));
+                    GameObject item = hit.transform.Find("item").gameObject;
+                    hit.transform.Find("effect").gameObject.SetActive(true);
+                    hit.transform.Find("sprite").GetComponent<ScaleAnimation>().radius = 0.02f;
+                    iTween.MoveTo(item, new Vector3(item.transform.position.x, item.transform.position.y + 3.0f, item.transform.position.z), 2.0f);
+                }
+                else if (name.Length >= 4 && name == "item") {
+                    Vector3 des = camera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").position);
+                    iTween.MoveTo(hit.transform.gameObject,des,3.0f);
+                    StartCoroutine(BileCollect(hit.transform.gameObject));
+                }
+            }
+        }
+    }
+
     void InitUI() {
         psUIRootManager.Ins.HideAllUIs();
         psUIRootManager.Ins.GameUI.SetActive(true);
@@ -29,6 +62,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.transform.Find("TopUI").gameObject.SetActive(true);
         dialogs[0] = psUIRootManager.Ins.npcDialog.transform.Find("dialog0").gameObject;
         dialogs[1] = psUIRootManager.Ins.npcDialog.transform.Find("dialog1").gameObject;
+        psUIRootManager.Ins.toolPnl.transform.Find("diamond").GetComponent<Button>().onClick.AddListener(CloseToolPnl);
     }
     void InitUIEvent() {
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
@@ -40,6 +74,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/stop").GetComponent<Button>().onClick.AddListener(Stop);
         psUIRootManager.Ins.stopPnl.transform.Find("btn_resume").GetComponent<Button>().onClick.AddListener(Resume);
     }
+
 
     void Home()
     {
@@ -53,6 +88,16 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     }
     void OpenBible() {
         psUIRootManager.Ins.bibleDialog.SetActive(!psUIRootManager.Ins.bibleDialog.activeSelf);
+    }
+    IEnumerator BileCollect(GameObject item) {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(item);
+        StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").gameObject));
+        yield return new WaitForSeconds(1.0f);
+        OpenBible();
+        yield return new WaitForSeconds(2.0f);
+        psUIRootManager.Ins.bibleDialog.transform.Find(string.Format("Panel/bible/item{0}/effect", curBileItem)).gameObject.SetActive(true);
+        yield return 0;
     }
     void Stop() {
         psUIRootManager.Ins.stopPnl.SetActive(true);
@@ -73,7 +118,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
             // 隐藏
             iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 1300.0f, obj.transform.position.z), 1.0f);
             psGlobalDatabase.Ins.isGameStart = true;
-            OpenToolPnl();
+            StartCoroutine(OpenToolPnl());
         }
         else {
             // 显示
@@ -94,15 +139,23 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         dialogs[1].SetActive(true);
         yield return 0;
     }
-    void OpenToolPnl() {
+    IEnumerator OpenToolPnl() {
+        yield return new WaitForSeconds(1.0f);
         psUIRootManager.Ins.toolPnl.SetActive(true);
+        Time.timeScale = 0;
+        yield return 0;
     }
     void CloseToolPnl()
     {
         psUIRootManager.Ins.toolPnl.SetActive(false);
+        Time.timeScale = 1.0f;
         StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").gameObject));
     }
     IEnumerator BlinkObj(GameObject obj) {
+        obj.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        obj.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
         obj.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         obj.SetActive(true);
@@ -129,24 +182,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
-       if (Input.GetMouseButtonDown(0)) {
-           Debug.Log("");
-           RaycastHit hit;
-           Vector2 screenPosition = Input.mousePosition;
-           var ray = psGameLevelManager.Ins.camera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
-           if (Physics.Raycast(ray, out hit))//判断是否点击到实例物体上  
-           {
-               if (hit.transform.gameObject.name == "npc")
-               {
-                   psGlobalDatabase.Ins.curNpc.transform.Find("effect_wakeup").gameObject.SetActive(true);
-               }
-           }
-       }
-
-	}
 
     public void OnGameOver()
     {
