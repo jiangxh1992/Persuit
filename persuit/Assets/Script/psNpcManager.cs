@@ -43,7 +43,6 @@ public class psNpcManager : MonoBehaviour, IPointerClickHandler{
         isWakeup = true;
         psGlobalDatabase.Ins.curNpc = this;
         mAnimator.SetInteger("NpcState",1);
-        transform.Find("effect_wakeup").gameObject.SetActive(true);
         StartCoroutine(DelayChangeToIdle(WeakTime));
     }
     IEnumerator DelayChangeToIdle(float delay)

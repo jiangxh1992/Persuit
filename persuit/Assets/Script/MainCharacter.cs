@@ -100,23 +100,35 @@ public class MainCharacter : MonoBehaviour
 
     #endregion
 
-    public void PlayEffect(int index) {
+    public void PlayEffect(int index, float delay = 0.0f) {
         if (mAudioSource == null) return;
-        if (index == 100) {
+        if (index == 100)
+        {
             mAudioSource.Stop();
             return;
         }
+        //落水
+        if (index == 2 && psGlobalDatabase.Ins.curLevel != "GameLevel1") return;
+        StartCoroutine(DelayPlayEffect(index,delay));
+    }
+    IEnumerator DelayPlayEffect(int index, float delay) {
+        yield return new WaitForSeconds(delay);
+        
         mAudioSource.clip = sounds[index];
-        if (index == 0) { // 脚步
+        if (index == 0)
+        { // 脚步
             mAudioSource.loop = true;
         }
-        else if (index == 1) { // 落地
+        else if (index == 1)
+        { // 落地
             mAudioSource.loop = false;
-        }else if(index == 2){ //落水
-            if (psGlobalDatabase.Ins.curLevel != "GameLevel1") return;
+        }
+        else if (index == 2)
+        { //落水
             mAudioSource.loop = false;
         }
         mAudioSource.Play();
+        yield return 0;
     }
 
     // 0:toIdle 1:toRun 2:toJump

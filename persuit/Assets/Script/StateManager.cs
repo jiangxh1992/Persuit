@@ -20,12 +20,11 @@ public class StateManager {
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("jump");
                 psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(false);
                 psGlobalDatabase.Ins.mainChar.PlayEffect(100);
-                //psGlobalDatabase.Ins.mainChar.ChangeToIdleAfterDelay(0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateRun:
                 psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(true);
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("run");
-                psGlobalDatabase.Ins.mainChar.PlayEffect(0);
+                psGlobalDatabase.Ins.mainChar.PlayEffect(0,0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateDead:
                 psGlobalDatabase.Ins.mainChar.mAnimator.Play("dead");

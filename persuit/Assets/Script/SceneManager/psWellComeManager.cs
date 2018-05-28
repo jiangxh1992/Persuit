@@ -15,6 +15,8 @@ public class psWellComeManager : MonoBehaviour {
         psUIRootManager.Ins.WellComeUI.SetActive(true);
         text = psUIRootManager.Ins.WellComeUI.transform.Find("Scroll View/Viewport/Content/Text");
         mask = psUIRootManager.Ins.transform.Find("mask").GetComponent<Image>();
+        mask.gameObject.SetActive(true);
+        psUIRootManager.Ins.transform.Find("logo").gameObject.SetActive(false);
         StartCoroutine(EnterMenu());
 	}
 	

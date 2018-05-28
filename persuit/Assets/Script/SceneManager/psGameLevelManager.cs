@@ -56,6 +56,12 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     }
     void Stop() {
         psUIRootManager.Ins.stopPnl.SetActive(true);
+        Time.timeScale = 0;
+    }
+    void Resume()
+    {
+        psUIRootManager.Ins.stopPnl.SetActive(false);
+        Time.timeScale = 1.0f;
     }
     void OpenNpcDialog()
     {
@@ -64,17 +70,19 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         obj.SetActive(true);
         if (npcDialog)
         {
+            // 隐藏
             iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 1300.0f, obj.transform.position.z), 1.0f);
             psGlobalDatabase.Ins.isGameStart = true;
+            OpenToolPnl();
         }
         else {
+            // 显示
             iTween.MoveTo(obj,new Vector3(obj.transform.position.x, 860.0f,obj.transform.position.z),1.0f);
             StartCoroutine(DialogShit());
             psGlobalDatabase.Ins.isGameStart = false;
         }
         npcDialog = !npcDialog;
     }
-
     IEnumerator DialogShit() {
         dialogs[0].SetActive(true);
         dialogs[1].SetActive(false);
@@ -86,8 +94,23 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         dialogs[1].SetActive(true);
         yield return 0;
     }
-    void Resume() {
-        psUIRootManager.Ins.stopPnl.SetActive(false);
+    void OpenToolPnl() {
+        psUIRootManager.Ins.toolPnl.SetActive(true);
+    }
+    void CloseToolPnl()
+    {
+        psUIRootManager.Ins.toolPnl.SetActive(false);
+        StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").gameObject));
+    }
+    IEnumerator BlinkObj(GameObject obj) {
+        obj.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        obj.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        obj.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        obj.SetActive(true);
+        yield return 0;
     }
 
     // 创建主角
@@ -109,7 +132,20 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		
+       if (Input.GetMouseButtonDown(0)) {
+           Debug.Log("");
+           RaycastHit hit;
+           Vector2 screenPosition = Input.mousePosition;
+           var ray = psGameLevelManager.Ins.camera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
+           if (Physics.Raycast(ray, out hit))//判断是否点击到实例物体上  
+           {
+               if (hit.transform.gameObject.name == "npc")
+               {
+                   psGlobalDatabase.Ins.curNpc.transform.Find("effect_wakeup").gameObject.SetActive(true);
+               }
+           }
+       }
+
 	}
 
     public void OnGameOver()

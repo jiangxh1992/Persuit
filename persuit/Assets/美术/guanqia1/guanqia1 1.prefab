@@ -1575,6 +1575,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1547512524641316
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4277922386380006}
+  - component: {fileID: 136744858142867540}
+  m_Layer: 0
+  m_Name: npc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1554061849095724
 GameObject:
   m_ObjectHideFlags: 1
@@ -3395,6 +3411,19 @@ Transform:
   m_Father: {fileID: 4162145387176462}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4277922386380006
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547512524641316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.09, y: -1.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4661018667468938}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4281732123730158
 Transform:
   m_ObjectHideFlags: 1
@@ -4185,6 +4214,7 @@ Transform:
   m_Children:
   - {fileID: 4338369465588814}
   - {fileID: 4099100423676890}
+  - {fileID: 4277922386380006}
   m_Father: {fileID: 4876518322841886}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6255,7 +6285,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3143d49e1ff27494d802db63e53eea6c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3b21cd96d6c7cb4fa769c8682c71b6d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6602,6 +6632,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dfceeaf8ae6df4488372e11466cac85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &136744858142867540
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547512524641316}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.7751584
+  m_Height: 5.3762803
+  m_Direction: 1
+  m_Center: {x: -0.74226016, y: -0.51699847, z: 0}
 --- !u!212 &212000153309456682
 SpriteRenderer:
   m_ObjectHideFlags: 1
