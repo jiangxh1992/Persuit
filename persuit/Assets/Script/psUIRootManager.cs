@@ -16,6 +16,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
     public GameObject npcDialog = null;
     public GameObject bibleDialog = null;
     public GameObject stopPnl = null;
+    public GameObject toolPnl = null;
 
     // 结算界面
     public GameObject gameoverPnl = null;
@@ -36,6 +37,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         gameoverPnl = transform.Find("GameUI/GameOverPnl").gameObject;
         npcChatBtn = transform.Find("GameUI/DialogUI/npcChatBtn").gameObject;
         stopPnl = transform.Find("GameUI/StopPnl").gameObject;
+        toolPnl = transform.Find("GameUI/ToolPnl").gameObject;
 
         ProgressUI = transform.Find("ProgressUI").gameObject;
 
@@ -51,25 +53,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
             Vector3 screenPos = psGameLevelManager.Ins.camera.WorldToScreenPoint(new Vector3(npcPos.x, npcPos.y + 0.5f, 0));
             npcChatBtn.transform.position = new Vector3(screenPos.x,screenPos.y,0);
         }
-        /*
-        if (Input.GetMouseButtonDown(0)) {
-            RaycastHit hit;//射线投射碰撞信息  
-            // 从鼠标所在的位置发射  
-            Vector2 screenPosition = Input.mousePosition;//当前鼠标的位置  
-            var ray = psGameLevelManager.Ins.camera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
-            if (Physics.Raycast(ray, out hit))//判断是否点击到实例物体上  
-            {
-                if (hit.transform.gameObject.name == "npc")
-                {
-                }
-            }
-        }
-         * */
 	}
-
-    void checkClick()
-    {
-    } 
 
     public void HideAllUIs(){
         WellComeUI.SetActive(false);
@@ -79,6 +63,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         npcDialog.SetActive(false);
         npcChatBtn.SetActive(false);
         stopPnl.SetActive(false);
+        toolPnl.SetActive(false);
         ProgressUI.SetActive(false);
     }
 }
