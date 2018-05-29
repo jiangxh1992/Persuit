@@ -2970,7 +2970,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020137307317504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: 0, z: 0}
+  m_LocalPosition: {x: -11.4, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 4661018667468938}
@@ -3009,8 +3009,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255122725021246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38, y: 1.37, z: 0.4707853}
-  m_LocalScale: {x: 1.4356482, y: 1.4356482, z: 1.4356482}
+  m_LocalPosition: {x: 1.69, y: 0.77, z: 0.4707853}
+  m_LocalScale: {x: 1.7346579, y: 1.7346579, z: 1.7346579}
   m_Children: []
   m_Father: {fileID: 4207555913356500}
   m_RootOrder: 0
@@ -4456,8 +4456,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577721482458642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.77, y: -1.22, z: 15}
-  m_LocalScale: {x: 24.31401, y: 12.168144, z: 0.7957706}
+  m_LocalPosition: {x: -31.766, y: -1.64, z: 15}
+  m_LocalScale: {x: 32, y: 15, z: 2}
   m_Children: []
   m_Father: {fileID: 4731245301314258}
   m_RootOrder: 0
@@ -4790,8 +4790,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683477174331224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.959, y: -1.401, z: 10}
-  m_LocalScale: {x: 25.498455, y: 12.800111, z: 0.8611199}
+  m_LocalPosition: {x: -31.937, y: -1.678, z: 10}
+  m_LocalScale: {x: 30, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 4731245301314258}
   m_RootOrder: 1
@@ -6484,7 +6484,7 @@ Animator:
   m_GameObject: {fileID: 1886792158963244}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ac5f5e1326bd844d9c0784392b038d1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7ee09f30d59a8e8449e5f4d24024c87d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6572,6 +6572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mAnimator: {fileID: 0}
+  EffectTime: 5
   WeakTime: 0.2
 --- !u!114 &114116569858170672
 MonoBehaviour:
@@ -6584,7 +6585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 6
 --- !u!114 &114139081349859342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6596,7 +6597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0
 --- !u!114 &114168208039637256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6608,7 +6609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0
 --- !u!114 &114189637543280170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6620,7 +6621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.4
+  speed: 10
 --- !u!114 &114212083386239758
 MonoBehaviour:
   m_ObjectHideFlags: 1

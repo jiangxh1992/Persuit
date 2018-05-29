@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class TextureScroller : MonoBehaviour {
 
     private float offset;
-    public float speed = 0.1f;
+    public int speed = 1;
     Material mat = null;
     float timeTick = 0.0f;
     
     void Start()
     {
         mat = GetComponent<Renderer>().material;
-        mat.mainTexture.wrapMode = TextureWrapMode.Repeat;
+        //mat.mainTexture.wrapMode = TextureWrapMode.Repeat;
     }
 
     void Update()
@@ -24,8 +24,8 @@ public class TextureScroller : MonoBehaviour {
         if (!psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea && psGlobalDatabase.Ins.isGameStart)
         {
             // 纹理滚动
-            timeTick += 0.01f * psGlobalDatabase.Ins.mMoveDir;
-            offset = speed * timeTick;
+            timeTick += psGlobalDatabase.Ins.mMoveDir;
+            offset = 0.001f * speed * timeTick;
             mat.mainTextureOffset = new Vector2(offset, 0);
 
             Vector3 cameraPos = psGlobalDatabase.Ins.mainChar.transform.position;//psGameLevelManager.Ins.camera.transform.position;
