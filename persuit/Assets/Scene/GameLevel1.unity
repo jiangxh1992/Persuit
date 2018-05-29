@@ -206,20 +206,48 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
       propertyPath: m_LocalScale.x
-      value: 32.10499
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
       propertyPath: m_LocalScale.y
-      value: 16.220547
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114116569858170672, guid: afa00168938753f41bcaa85881587c2a,
         type: 2}
       propertyPath: speed
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114189637543280170, guid: afa00168938753f41bcaa85881587c2a,
         type: 2}
       propertyPath: speed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683477174331224, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -31.937
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797376230408304, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887040189662980, guid: afa00168938753f41bcaa85881587c2a, type: 2}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
