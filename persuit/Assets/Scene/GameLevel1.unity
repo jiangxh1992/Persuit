@@ -161,6 +161,11 @@ Prefab:
       propertyPath: m_Name
       value: guanqia1
       objectReference: {fileID: 0}
+    - target: {fileID: 82141483612711094, guid: afa00168938753f41bcaa85881587c2a,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1487d456676c5064384159273aea4230, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}
   m_IsPrefabParent: 0
