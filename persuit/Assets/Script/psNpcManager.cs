@@ -8,6 +8,7 @@ public class psNpcManager : MonoBehaviour{
     public float EffectTime = 3.0f;
     public float WeakTime = 0.2f;
     bool isWakeup = false;
+    public int item = 0;
 
 	void Start () {
 		mAnimator = transform.Find("rendernode").GetComponent<Animator>();
