@@ -156,10 +156,6 @@ Prefab:
       propertyPath: m_Name
       value: guanqia1
       objectReference: {fileID: 0}
-    - target: {fileID: 1986405375776492, guid: afa00168938753f41bcaa85881587c2a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}
   m_IsPrefabParent: 0
@@ -269,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: dccd218f76d577b4e9d0815ab93a06ee, type: 3}
+  _FogIntensity: 0.3
 --- !u!1001 &2108176852
 Prefab:
   m_ObjectHideFlags: 0
