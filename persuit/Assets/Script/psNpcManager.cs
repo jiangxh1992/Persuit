@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class psNpcManager : MonoBehaviour{
     public Animator mAnimator = null;
-    public float EffectTime = 5.0f;
+    public float EffectTime = 3.0f;
     public float WeakTime = 0.2f;
     bool isWakeup = false;
 
@@ -25,6 +25,7 @@ public class psNpcManager : MonoBehaviour{
     IEnumerator DelayWakeUp()
     {
         psGlobalDatabase.Ins.curNpc.transform.Find("effect_wakeup").gameObject.SetActive(true);
+        gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(EffectTime);
         psGlobalDatabase.Ins.curNpc.transform.Find("effect_wakeup").gameObject.SetActive(false);
         mAnimator.SetInteger("NpcState", 1);

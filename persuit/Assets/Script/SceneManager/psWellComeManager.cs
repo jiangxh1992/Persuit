@@ -17,7 +17,8 @@ public class psWellComeManager : MonoBehaviour {
         mask = psUIRootManager.Ins.transform.Find("mask").GetComponent<Image>();
         mask.gameObject.SetActive(true);
         psUIRootManager.Ins.transform.Find("logo").gameObject.SetActive(false);
-        StartCoroutine(EnterMenu());
+        psUIRootManager.Ins.WellComeUI.transform.Find("button_grey").GetComponent<Button>().onClick.AddListener(StartEnterMenu);
+        StartCoroutine(StartScrollText());
 	}
 	
 	void Update () {
@@ -28,9 +29,16 @@ public class psWellComeManager : MonoBehaviour {
             mask.color -= new Color(0, 0, 0, 0.05f);
 	}
 
+    IEnumerator StartScrollText() {
+        yield return new WaitForSeconds(duration);
+        StartCoroutine(EnterMenu());
+    }
+    void StartEnterMenu() {
+        StartCoroutine(EnterMenu());
+    }
+
     IEnumerator EnterMenu()
     {
-        yield return new WaitForSeconds(duration);
         isMaskingFade = true;
         yield return new WaitForSeconds(1.5f);
         psGlobalDatabase.Ins.isFistLogin = false;

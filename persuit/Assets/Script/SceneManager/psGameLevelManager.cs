@@ -73,6 +73,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.bibleDialog.transform.Find("Panel/close").GetComponent<Button>().onClick.AddListener(OpenBible);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/stop").GetComponent<Button>().onClick.AddListener(Stop);
         psUIRootManager.Ins.stopPnl.transform.Find("btn_resume").GetComponent<Button>().onClick.AddListener(Resume);
+        psUIRootManager.Ins.stopPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
     }
 
 
@@ -191,7 +192,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     }
 
     IEnumerator GameOver() {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         psGlobalDatabase.Ins.ResetMainChar();
         psUIRootManager.Ins.gameoverPnl.SetActive(true);
         yield return 0;
