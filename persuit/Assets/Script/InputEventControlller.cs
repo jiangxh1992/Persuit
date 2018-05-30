@@ -20,7 +20,7 @@ public class InputEventControlller : Singleton<InputEventControlller> {
 	
 	// Update is called once per frame
 	void Update () {
-        if (psGlobalDatabase.Ins.mainChar == null || psGlobalDatabase.Ins.mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateDead) return;
+        if (psGlobalDatabase.Ins.mainChar == null || !psGlobalDatabase.Ins.isGameStart) return;
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             OnLeftDown();
         }
