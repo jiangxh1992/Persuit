@@ -5,7 +5,6 @@ using System.Collections;
 public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
 {
     public Shader SCShader;
-    private float TimeX = 1.0f;
     private Material SCMaterial;
     private Texture2D Texture2;
     [Range(0,1.0f)]

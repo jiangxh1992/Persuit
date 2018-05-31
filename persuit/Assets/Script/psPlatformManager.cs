@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class psPlatformManager : Singleton<psPlatformManager> {
-    float moveSpeed = 5f;
-    float moveDistance = 5;
-    float movedDistance = 0;
+    //float moveSpeed = 5f;
+    //float moveDistance = 5;
+    //float movedDistance = 0;
 
 	// Use this for initialization
 	void Start () {

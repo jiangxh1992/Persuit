@@ -20,7 +20,6 @@ public class TextureScroller : MonoBehaviour {
     {
         if (psGameLevelManager.Ins == null || psGlobalDatabase.Ins.mainChar == null) return;
 
-        float curX = psGlobalDatabase.Ins.mainChar.transform.position.x;
         if (!psGlobalDatabase.Ins.isBlocked && !psGlobalDatabase.Ins.isInFinalArea && psGlobalDatabase.Ins.isGameStart)
         {
             // 纹理滚动

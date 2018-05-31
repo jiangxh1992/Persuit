@@ -111,7 +111,7 @@ public class MainCharacter : MonoBehaviour
         yield return new WaitForSeconds(delay);
         
         mAudioSource.clip = sounds[index];
-        if (index == 0)
+        if (index == 0 && mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
         { // 脚步
             mAudioSource.loop = true;
         }

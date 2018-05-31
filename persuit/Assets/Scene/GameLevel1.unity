@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &356978371
+--- !u!1001 &1206567951
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -156,11 +156,6 @@ Prefab:
       propertyPath: m_Name
       value: guanqia1
       objectReference: {fileID: 0}
-    - target: {fileID: 82141483612711094, guid: afa00168938753f41bcaa85881587c2a,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1487d456676c5064384159273aea4230, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}
   m_IsPrefabParent: 0
@@ -345,6 +340,11 @@ Prefab:
       propertyPath: MoveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114389419918836696, guid: e00210e69f8a8434c9408d36a626515b,
+        type: 2}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 1985082735}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e00210e69f8a8434c9408d36a626515b, type: 2}
   m_IsPrefabParent: 0

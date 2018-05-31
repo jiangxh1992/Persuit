@@ -29,9 +29,9 @@ public class psNpcManager : MonoBehaviour{
         gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(EffectTime);
         psGlobalDatabase.Ins.curNpc.transform.Find("effect_wakeup").gameObject.SetActive(false);
-        mAnimator.SetInteger("NpcState", 1);
+        mAnimator.Play("weak");
         yield return new WaitForSeconds(WeakTime);
-        mAnimator.SetInteger("NpcState", 0);
+        mAnimator.Play("idle");
         psUIRootManager.Ins.npcChatBtn.SetActive(true);
         yield return 0;
     }

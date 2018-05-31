@@ -10,7 +10,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public Vector3 MainCharInitPos = Vector3.zero;
     public float MoveSpeed = 5.0f;
     public float UpForce = 500.0f;
-    public Camera camera = null;
+    public Camera gameCamera = null;
 
     int curItem = 0;
     public GameObject[] dialogs = new GameObject[2];
@@ -30,7 +30,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
             Debug.Log("");
             RaycastHit hit;
             Vector2 screenPosition = Input.mousePosition;
-            var ray = psGameLevelManager.Ins.camera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
+            var ray = psGameLevelManager.Ins.gameCamera.ScreenPointToRay(screenPosition);  //从当前屏幕鼠标位置发出一条射线  
             if (Physics.Raycast(ray, out hit))//判断是否点击到实例物体上  
             {
                 string name = hit.transform.gameObject.name;
@@ -45,7 +45,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
                     iTween.MoveTo(item, new Vector3(item.transform.position.x, item.transform.position.y + 3.0f, item.transform.position.z), 2.0f);
                 }
                 else if (name.Length >= 4 && name == "item") {
-                    Vector3 des = camera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").position);
+                    Vector3 des = gameCamera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").position);
                     iTween.MoveTo(hit.transform.gameObject,des,3.0f);
                     StartCoroutine(BileCollect(hit.transform.gameObject));
                 }
@@ -101,9 +101,14 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         yield return 0;
     }
     IEnumerator DiamondCollect(GameObject item) {
+        yield return new WaitForSeconds(0.5f);
+        CloseNpcDialog();
+        yield return new WaitForSeconds(0.5f);
+        item.SetActive(true);
+        Vector3 des = gameCamera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").position);
+        iTween.MoveTo(item, des, 3.0f);
         yield return new WaitForSeconds(2.5f);
         Destroy(item);
-        CloseNpcDialog();
         StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").gameObject));
         yield return new WaitForSeconds(0.6f);
         OpenTool();
@@ -142,9 +147,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         if (psGlobalDatabase.Ins.curNpc.transform.Find("diamond"))
         {
             GameObject obj = psGlobalDatabase.Ins.curNpc.transform.Find("diamond").gameObject;
-            obj.SetActive(true);
-            Vector3 des = camera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").position);
-            iTween.MoveTo(obj, des, 3.0f);
             StartCoroutine(DiamondCollect(obj));
         }
         else {
