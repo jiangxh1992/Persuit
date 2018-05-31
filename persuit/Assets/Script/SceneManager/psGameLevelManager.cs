@@ -114,12 +114,12 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     }
     void Stop() {
         psUIRootManager.Ins.stopPnl.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     void Resume()
     {
         psUIRootManager.Ins.stopPnl.SetActive(false);
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
     }
     void OpenNpcDialog()
     {
