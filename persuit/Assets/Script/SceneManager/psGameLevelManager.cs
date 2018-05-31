@@ -14,7 +14,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 
     int curItem = 0;
     public GameObject[] dialogs = new GameObject[2];
-
+    GameObject killer_music = null;
 
 	void Start () {
         psUIRootManager.Ins.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
@@ -183,6 +183,17 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 
         psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;
+    }
+
+    // 创建随机音符
+    public GameObject CreateMusicBullet() {
+        if (killer_music == null) {
+            Object obj = Resources.Load("Prefab/killer_music", typeof(GameObject));
+            killer_music = Instantiate(obj) as GameObject;
+            killer_music.SetActive(false);
+        }
+        GameObject newkiller = GameObject.Instantiate(killer_music) as GameObject;
+        return newkiller;
     }
 
     public void OnGameOver()

@@ -9,6 +9,7 @@ public class psNpcManager : MonoBehaviour{
     public float WeakTime = 0.2f;
     bool isWakeup = false;
     public int item = 0;
+    bool isShot = true;
 
 	void Start () {
 		mAnimator = transform.Find("rendernode").GetComponent<Animator>();
@@ -33,6 +34,19 @@ public class psNpcManager : MonoBehaviour{
         yield return new WaitForSeconds(WeakTime);
         mAnimator.Play("idle");
         psUIRootManager.Ins.npcChatBtn.SetActive(true);
+        if(psGlobalDatabase.Ins.curLevel == "GameLevel3")
+            StartCoroutine(Shot());
+        yield return 0;
+    }
+
+    IEnumerator Shot() {
+        while (isShot) {
+            GameObject music = psGameLevelManager.Ins.CreateMusicBullet();
+            music.transform.parent = psGlobalDatabase.Ins.curNpc.transform;
+            music.transform.localPosition = Vector3.zero;
+            music.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+        }
         yield return 0;
     }
 }

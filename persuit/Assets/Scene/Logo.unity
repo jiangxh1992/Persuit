@@ -366,6 +366,10 @@ MonoBehaviour:
   curLevel: 
   MainCamera: {fileID: 0}
   curNpc: {fileID: 0}
+  music_sprite:
+  - {fileID: 21300000, guid: 7da38ac322be08348a08f6bb6e773096, type: 3}
+  - {fileID: 21300000, guid: 4735097c2fa75dc4690de57056273ef0, type: 3}
+  - {fileID: 21300000, guid: d272f01648fcc6c49aef8daace62911f, type: 3}
 --- !u!1001 &1373971311
 Prefab:
   m_ObjectHideFlags: 0

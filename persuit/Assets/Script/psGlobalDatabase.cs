@@ -24,6 +24,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public string curLevel = "Wellcome"; // 当前场景
     public Camera MainCamera = null;
     public psNpcManager curNpc = null;
+    public Sprite[] music_sprite;
 	// Use this for initialization
 	void Start () {
         // 跳
