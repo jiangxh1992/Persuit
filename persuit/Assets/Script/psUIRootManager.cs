@@ -24,6 +24,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
     public GameObject btn_home = null;
     public GameObject btn_restart = null;
     public GameObject npcChatBtn = null;
+    public GameObject gameText = null;
 
     // 加载界面
     public GameObject ProgressUI = null;
@@ -37,6 +38,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         bibleDialog = transform.Find("GameUI/BiblePnl").gameObject;
         gameoverPnl = transform.Find("GameUI/GameOverPnl").gameObject;
         npcChatBtn = transform.Find("GameUI/DialogUI/npcChatBtn").gameObject;
+        gameText = transform.Find("GameUI/TopUI/Text").gameObject;
         stopPnl = transform.Find("GameUI/StopPnl").gameObject;
         toolPnl = transform.Find("GameUI/ToolPnl").gameObject;
 
@@ -63,6 +65,7 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         gameoverPnl.SetActive(false);
         npcDialog.SetActive(false);
         npcChatBtn.SetActive(false);
+        gameText.SetActive(false);
         stopPnl.SetActive(false);
         toolPnl.SetActive(false);
         ProgressUI.SetActive(false);

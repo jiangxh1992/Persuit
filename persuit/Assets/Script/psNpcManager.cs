@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class psNpcManager : MonoBehaviour{
@@ -9,12 +10,13 @@ public class psNpcManager : MonoBehaviour{
     public float WeakTime = 0.2f;
     bool isWakeup = false;
     public int item = 0;
-    bool isShot = true;
     bool isMoving = false;
+    bool isAttack = false;
     Vector3 tarPos = Vector3.zero;
     Vector3 initPos = Vector3.zero;
     float areaX = 5.0f;
     float areaY = 8.0f;
+    int attackDuration = 20; // 攻击时间
 
 	void Start () {
 		mAnimator = transform.Find("rendernode").GetComponent<Animator>();
@@ -27,6 +29,11 @@ public class psNpcManager : MonoBehaviour{
             float targetY = Mathf.Lerp(transform.position.y,tarPos.y,0.005f);
             float targetX = Mathf.Lerp(transform.position.x,tarPos.x,0.005f);
             transform.position = new Vector3(targetX, targetY, initPos.z);
+        }
+
+        // 攻击倒计时
+        if (isAttack) {
+            psUIRootManager.Ins.gameText.GetComponent<Text>().text = attackDuration.ToString();
         }
 	}
 
@@ -47,7 +54,9 @@ public class psNpcManager : MonoBehaviour{
         mAnimator.Play("idle");
         psUIRootManager.Ins.npcChatBtn.SetActive(true);
         if (psGlobalDatabase.Ins.curLevel == "GameLevel3") {
+            psUIRootManager.Ins.npcChatBtn.SetActive(false);
             isMoving = true;
+            isAttack = true;
             StartCoroutine(RandomTarPos());
             StartCoroutine(Shot());
         }
@@ -57,7 +66,7 @@ public class psNpcManager : MonoBehaviour{
     IEnumerator Shot() {
         psGameLevelManager.Ins.gameCamera.GetComponent<psCameraController>().TargetPosYOffset = 3.0f;
         yield return new WaitForSeconds(3.0f);
-        while (isShot) {
+        while (isAttack) {
             GameObject music = psGameLevelManager.Ins.CreateMusicBullet();
             music.transform.parent = psGlobalDatabase.Ins.curNpc.transform;
             music.transform.localPosition = Vector3.zero;
@@ -69,13 +78,21 @@ public class psNpcManager : MonoBehaviour{
 
     IEnumerator RandomTarPos()
     {
-        while (true)
+        psUIRootManager.Ins.gameText.SetActive(true);
+        while (isAttack)
         {
-            if (Random.Range(0, 1.0f) > 0.5)
+            if (Random.Range(0, 1.0f) > 0.7)
             {
                 tarPos = new Vector3(Random.Range(initPos.x - areaX, initPos.x + areaX), Random.Range(initPos.y - areaY/2, initPos.y + areaY), initPos.z);
             }
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
+            --attackDuration;
+            if (attackDuration < 0) {
+                isAttack = false;
+                tarPos = initPos;
+                psUIRootManager.Ins.npcChatBtn.SetActive(true);
+                psUIRootManager.Ins.gameText.GetComponent<Text>().text = "Congratulations!";
+            }
         }
         yield return 0;
     }

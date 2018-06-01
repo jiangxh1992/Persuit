@@ -11,8 +11,8 @@ public class MainCharacter : MonoBehaviour
     public AudioClip[] sounds =null;
     float mainPosX = 0;
 
-    public GameObject effect_dust = null;
-    public GameObject effect_enter = null;
+    public GameObject effect_dust = null;   // 尘土特效
+    public GameObject effect_enter = null;  // 入场特效
     #region lifecycle
     void Start()
     {
@@ -24,15 +24,16 @@ public class MainCharacter : MonoBehaviour
 
         effect_dust = transform.Find("effect_dust").gameObject;
         effect_enter = transform.Find("effect_enter").gameObject;
+        effect_enter.SetActive(false);
+        StartCoroutine(EnterEffect());
     }
 
     void Update()
     {
-        Debug.Log("screenwidth:" + Screen.width + "positionX:" + Camera.main.WorldToScreenPoint(transform.position).x);
-        //Debug.Log("speed:"+mRigidbody.velocity.y);
+        // 主角左右移动
         if(psGlobalDatabase.Ins.mMoveDir != 0)
-            transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed); // 主角左右移动
-        //Debug.Log("curstate:" + (int)mStateManager.mCurState);
+            transform.Translate(new Vector2(1, 0) * Time.deltaTime * psGlobalDatabase.Ins.moveSpeed);
+        // 检测主角阻挡
         if (Mathf.Abs(transform.position.x - mainPosX) > 0.1f)
         {
             mainPosX = transform.position.x;
@@ -46,7 +47,8 @@ public class MainCharacter : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         string colliderName = collision.gameObject.name;
-        if (colliderName.Length >=8 &&colliderName.Substring(0, 8) == "platform") // 落地
+        // 落地
+        if (colliderName.Length >=8 &&colliderName.Substring(0, 8) == "platform")
         {
             PlayEffect(1);
             psGlobalDatabase.Ins.jumpCount = 0;
@@ -66,15 +68,11 @@ public class MainCharacter : MonoBehaviour
         if(colliderName == "startArea"){
             if (!psGlobalDatabase.Ins.isGameStart) {
                 psGlobalDatabase.Ins.isGameStart = true;
-                transform.Find("effect_enter").gameObject.SetActive(false);
             }
         }
         else if (colliderName == "finalTrigger") // 场景切换
-        { 
-            psGlobalDatabase.Ins.ResetMainChar();
-            string curLevel = psGlobalDatabase.Ins.curLevel;
-            string nextLevel = "GameLevel" + (int.Parse(curLevel.Substring(curLevel.Length - 1))+1);
-            psSceneManager.LoadSceneProgress(nextLevel);
+        {
+            StartCoroutine(EnterNextLevel());
         }
         else if (colliderName == "finalArea") // 镜头不跟随区域
         {
@@ -85,7 +83,6 @@ public class MainCharacter : MonoBehaviour
             mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
         }
     }
-
     void OnTriggerExit2D(Collider2D other)
     {
         string colliderName = other.gameObject.name;
@@ -93,9 +90,10 @@ public class MainCharacter : MonoBehaviour
             psGlobalDatabase.Ins.isInFinalArea = false;
         }
     }
-
     #endregion
 
+
+    // 音效
     public void PlayEffect(int index, float delay = 0.0f) {
         if (mAudioSource == null) return;
         if (index == 100)
@@ -109,10 +107,9 @@ public class MainCharacter : MonoBehaviour
     }
     IEnumerator DelayPlayEffect(int index, float delay) {
         yield return new WaitForSeconds(delay);
-        
-        mAudioSource.clip = sounds[index];
-        if (index == 0 && mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
+        if (index == 0)
         { // 脚步
+            if(mStateManager.mCurState != HeaderProto.PCharState.PCharStateRun) index = 100;
             mAudioSource.loop = true;
         }
         else if (index == 1)
@@ -123,11 +120,32 @@ public class MainCharacter : MonoBehaviour
         { //落水
             mAudioSource.loop = false;
         }
-        mAudioSource.Play();
+        if (index != 100) {
+            mAudioSource.clip = sounds[index];
+            mAudioSource.Play();
+        }
         yield return 0;
     }
 
-    // 0:toIdle 1:toRun 2:toJump
+    // 下一关
+    IEnumerator EnterNextLevel() {
+        yield return new WaitForSeconds(0.3f);
+        psGlobalDatabase.Ins.ResetMainChar();
+        string curLevel = psGlobalDatabase.Ins.curLevel;
+        string nextLevel = "GameLevel" + (int.Parse(curLevel.Substring(curLevel.Length - 1)) + 1);
+        psSceneManager.LoadSceneProgress(nextLevel);
+        yield return 0;
+    }
+
+    // 入场动画
+    IEnumerator EnterEffect() {
+        yield return new WaitForSeconds(0.3f);
+        effect_enter.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        effect_enter.SetActive(false);
+        yield return 0;
+    }
+    // 播放动画
     public void SetAnimationSate(string param, bool val)
     {
         mAnimator.SetBool(param, val);
