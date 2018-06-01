@@ -5,12 +5,14 @@ using UnityEngine;
 public class psCameraController : MonoBehaviour {
 
     Vector3 targetPos = Vector3.zero;
+    public float TargetPosYOffset = 0;
 	void Start () {
 	}
 	
 	void Update () {
         if (!psGlobalDatabase.Ins.isGameStart || psGameLevelManager.Ins == null ||psGlobalDatabase.Ins.mainChar == null) return;
         targetPos = psGlobalDatabase.Ins.mainChar.transform.position;
+        targetPos.y += TargetPosYOffset;
 
         if (psGlobalDatabase.Ins.isGameStart) {
             
