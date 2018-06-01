@@ -1068,7 +1068,7 @@ GameObject:
   - component: {fileID: 95897898437939498}
   - component: {fileID: 114586053171728040}
   m_Layer: 0
-  m_Name: tutorial 00423
+  m_Name: butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 95332438772771472}
   - component: {fileID: 114848124926246698}
   m_Layer: 0
-  m_Name: tutorial 00406
+  m_Name: butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1506,7 +1506,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4876518322841886}
-  - component: {fileID: 114212083386239758}
   m_Layer: 0
   m_Name: MoveLayer
   m_TagString: Untagged
@@ -1800,7 +1799,7 @@ GameObject:
   - component: {fileID: 95823277845839828}
   - component: {fileID: 114445746345644702}
   m_Layer: 0
-  m_Name: tutorial 00400
+  m_Name: butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2456,7 +2455,7 @@ GameObject:
   - component: {fileID: 95771099075613422}
   - component: {fileID: 114364875621795996}
   m_Layer: 0
-  m_Name: tutorial 00264
+  m_Name: butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2619,7 @@ GameObject:
   - component: {fileID: 95190038066698034}
   - component: {fileID: 114520621619964942}
   m_Layer: 0
-  m_Name: tutorial 00270
+  m_Name: butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4660,8 +4659,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577721482458642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.52, y: -1.64, z: 15}
-  m_LocalScale: {x: 26.274578, y: 13.274823, z: 0.6512551}
+  m_LocalPosition: {x: -33.375, y: -0.756, z: 15}
+  m_LocalScale: {x: 38.247345, y: 17.30998, z: 0.6512551}
   m_Children: []
   m_Father: {fileID: 4731245301314258}
   m_RootOrder: 0
@@ -6942,7 +6941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.8
+  speed: 0.6
 --- !u!114 &114139081349859342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6978,18 +6977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c558ce396ba0c438016108df04eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
---- !u!114 &114212083386239758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1531006673030408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dfceeaf8ae6df4488372e11466cac85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 0.8
 --- !u!114 &114364875621795996
 MonoBehaviour:
   m_ObjectHideFlags: 1

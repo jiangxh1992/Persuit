@@ -17,6 +17,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     GameObject killer_music = null;
 
 	void Start () {
+        psGlobalDatabase.Ins.isInFinalArea = false;
         psUIRootManager.Ins.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         InitUI();
         CreateMainChar();
@@ -131,13 +132,13 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         GameObject obj = psUIRootManager.Ins.npcDialog;
         obj.SetActive(true);
         // 显示
-        iTween.MoveTo(obj,new Vector3(obj.transform.position.x, 400.0f,obj.transform.position.z),1.0f);
+        iTween.ScaleTo(obj,new Vector3(1,1,1),0.5f);
         psGlobalDatabase.Ins.isGameStart = false;
     }
     void CloseNpcDialog() {
         GameObject obj = psUIRootManager.Ins.npcDialog;
         // 隐藏
-        iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 600.0f, obj.transform.position.z), 1.0f);
+        iTween.ScaleTo(obj, new Vector3(0, 0, 1), 0.5f);
         psGlobalDatabase.Ins.isGameStart = true;
     }
     void DialogShit() {
@@ -178,8 +179,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.mainChar.gameObject.SetActive(true);
         psGlobalDatabase.Ins.mainChar.transform.localScale = new Vector3(MainCharScale, MainCharScale, MainCharScale);
         psGlobalDatabase.Ins.mainChar.transform.position = MainCharInitPos;
-        psGlobalDatabase.Ins.mainChar.transform.parent = psPlatformManager.Ins.transform;
-        psGlobalDatabase.Ins.mainChar.transform.Find("effect_enter").gameObject.SetActive(true);
 
         psGlobalDatabase.Ins.moveSpeed = MoveSpeed;
         psGlobalDatabase.Ins.mMoveDir = 0;

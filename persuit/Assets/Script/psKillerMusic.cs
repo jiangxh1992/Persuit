@@ -12,7 +12,7 @@ public class psKillerMusic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position -= new Vector3(0,0.1f,0);
+        transform.position -= new Vector3(0,0.05f,0);
         float targetX = Mathf.Lerp(transform.position.x,psGlobalDatabase.Ins.mainChar.transform.position.x, 0.02f);
         transform.position = new Vector3(targetX,transform.position.y,transform.position.z);
         if(transform.position.y < -30.0f)
