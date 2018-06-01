@@ -64,7 +64,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     void InitUIEvent() {
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_home").GetComponent<Button>().onClick.AddListener(Home);
         psUIRootManager.Ins.gameoverPnl.transform.Find("btn_restart").GetComponent<Button>().onClick.AddListener(Restart);
-        psUIRootManager.Ins.GameUI.transform.Find("DialogUI/npcChatBtn").GetComponent<Button>().onClick.AddListener(OpenNpcDialog);
+        psUIRootManager.Ins.npcChatBtn.GetComponent<Button>().onClick.AddListener(OpenNpcDialog);
         psUIRootManager.Ins.GameUI.transform.Find("DialogUI/npcDialog").GetComponent<Button>().onClick.AddListener(DialogShit);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").GetComponent<Button>().onClick.AddListener(OpenTool);
         psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").GetComponent<Button>().onClick.AddListener(OpenBible);
@@ -131,13 +131,13 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         GameObject obj = psUIRootManager.Ins.npcDialog;
         obj.SetActive(true);
         // 显示
-        iTween.MoveTo(obj,new Vector3(obj.transform.position.x, 660.0f,obj.transform.position.z),1.0f);
+        iTween.MoveTo(obj,new Vector3(obj.transform.position.x, 400.0f,obj.transform.position.z),1.0f);
         psGlobalDatabase.Ins.isGameStart = false;
     }
     void CloseNpcDialog() {
         GameObject obj = psUIRootManager.Ins.npcDialog;
         // 隐藏
-        iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 1300.0f, obj.transform.position.z), 1.0f);
+        iTween.MoveTo(obj, new Vector3(obj.transform.position.x, 600.0f, obj.transform.position.z), 1.0f);
         psGlobalDatabase.Ins.isGameStart = true;
     }
     void DialogShit() {
