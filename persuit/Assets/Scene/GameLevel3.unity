@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 1877058908}
   - component: {fileID: 1877058907}
   - component: {fileID: 1877058911}
+  - component: {fileID: 1877058912}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -274,6 +275,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetPosYOffset: 0
+--- !u!114 &1877058912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877058906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33af95082ed78a46aab5e2b5d0c75a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 8c7af5ffb230b2a45bef61a35fec6f25, type: 3}
+  Fade: 0.5
+  Intensity: 0.15
+  DirectionX: -0.029
+  Size: 1.7
+  Speed: 0.5
+  Distortion: 0.2
+  StormFlashOnOff: 1
 --- !u!1001 &2028816262
 Prefab:
   m_ObjectHideFlags: 0
