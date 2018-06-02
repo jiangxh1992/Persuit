@@ -25,6 +25,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public Camera MainCamera = null;
     public psNpcManager curNpc = null;
     public Sprite[] music_sprite;
+    public Sprite monster_bullet = null;
 	// Use this for initialization
 	void Start () {
         // 跳

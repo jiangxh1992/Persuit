@@ -16,4 +16,15 @@ public class HeaderProto {
         PGameLevelTypeWellCome = 10,
         PGameLevelTypeMenu = 11,
     }
+
+    public enum PNpcType {
+        PNpcTypeNormal = 1,
+        PNpcTypeAttack = 2,
+        PNpcTypeMonster = 3,
+    }
+
+    public enum PKillerType {
+        PKillerTypeMusic = 1,
+        PKillerTypeMonster = 2,
+    }
 }

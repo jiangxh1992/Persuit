@@ -184,24 +184,25 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psGlobalDatabase.Ins.mMoveDir = 0;
     }
 
-    // 创建随机音符
-    public GameObject CreateMusicBullet() {
+    // 子弹工场函数
+    public GameObject CreateMusicBullet(HeaderProto.PKillerType type) {
         if (killer_music == null) {
             Object obj = Resources.Load("Prefab/killer_music", typeof(GameObject));
             killer_music = Instantiate(obj) as GameObject;
             killer_music.SetActive(false);
         }
         GameObject newkiller = GameObject.Instantiate(killer_music) as GameObject;
+        newkiller.GetComponent<psKillerMusic>().mType = type;
         return newkiller;
     }
 
+    // 游戏结束
     public void OnGameOver()
     {
         psGlobalDatabase.Ins.mMoveDir = 0;
         psGlobalDatabase.Ins.isGameStart = false;
         StartCoroutine(GameOver());
     }
-
     IEnumerator GameOver() {
         yield return new WaitForSeconds(1.0f);
         psGlobalDatabase.Ins.ResetMainChar();
