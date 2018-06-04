@@ -80,7 +80,7 @@ public class MainCharacter : MonoBehaviour
         }
         else if (colliderName.Length >= 6 && colliderName.Substring(0, 6) == "killer") // 死亡
         {
-            mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
+            OnDead();
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -89,6 +89,21 @@ public class MainCharacter : MonoBehaviour
         if (colliderName == "finalArea") {
             psGlobalDatabase.Ins.isInFinalArea = false;
         }
+    }
+
+    public void OnDead() {
+        mStateManager.ChangeState(HeaderProto.PCharState.PCharStateDead);
+        if (psGlobalDatabase.Ins.curLevel == "GameLevel1")
+        {
+            mAnimator.Play("drown");
+        }
+        else
+        {
+            mAnimator.Play("dead");
+        }
+        effect_dust.SetActive(false);
+        PlayEffect(2);
+        psGameLevelManager.Ins.OnGameOver();
     }
     #endregion
 

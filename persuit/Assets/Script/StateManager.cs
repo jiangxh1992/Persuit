@@ -27,10 +27,7 @@ public class StateManager {
                 psGlobalDatabase.Ins.mainChar.PlayEffect(0,0.5f);
                 break;
             case HeaderProto.PCharState.PCharStateDead:
-                psGlobalDatabase.Ins.mainChar.mAnimator.Play("dead");
-                psGlobalDatabase.Ins.mainChar.effect_dust.SetActive(false);
-                psGlobalDatabase.Ins.mainChar.PlayEffect(2);
-                psGameLevelManager.Ins.OnGameOver();
+                
                 break;
             default: 
                 break;

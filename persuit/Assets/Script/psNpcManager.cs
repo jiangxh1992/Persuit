@@ -8,7 +8,7 @@ public class psNpcManager : MonoBehaviour{
     public HeaderProto.PNpcType mType = HeaderProto.PNpcType.PNpcTypeNormal; // npc类型
     public HeaderProto.PKillerType mKillerType = HeaderProto.PKillerType.PKillerTypeMusic;
     public float areaX = 5.0f;
-    float areaY = 8.0f;
+    float areaY = 5.0f;
 
     Animator mAnimator = null;
 
@@ -61,8 +61,8 @@ public class psNpcManager : MonoBehaviour{
         }
         if (mType == HeaderProto.PNpcType.PNpcTypeMonster) {
             isMoving = true;
-            StartCoroutine(MonsterMoving());
             StartCoroutine(Shot());
+            StartCoroutine(MonsterMoving());
         }
     }
     IEnumerator DelayWakeUp()
@@ -80,6 +80,7 @@ public class psNpcManager : MonoBehaviour{
             psUIRootManager.Ins.npcChatBtn.SetActive(false);
             psGameLevelManager.Ins.gameCamera.GetComponent<psCameraController>().TargetPosYOffset = 3.0f;
             isMoving = true;
+            isAttack = true;
             StartCoroutine(RandomTarPos());
             StartCoroutine(Shot());
         }
@@ -93,7 +94,7 @@ public class psNpcManager : MonoBehaviour{
         while (isAttack) {
             GameObject music = psGameLevelManager.Ins.CreateMusicBullet(mKillerType);
             music.transform.parent = this.transform;
-            music.transform.localPosition = Vector3.zero;
+            music.transform.localPosition = new Vector3(0,-1.0f,0);
             music.SetActive(true);
             yield return new WaitForSeconds(1.5f);
         }
@@ -129,7 +130,7 @@ public class psNpcManager : MonoBehaviour{
         tarPos = initPos;
         tarPos.x += areaX;
         yield return new WaitForSeconds(2.0f);
-        while (isAttack) {
+        while (isMoving) {
             tarPos.x = transform.position.x > initPos.x ? initPos.x - areaX : initPos.x + areaX;
             yield return new WaitForSeconds(4.0f);
         }

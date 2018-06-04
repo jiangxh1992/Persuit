@@ -1740,6 +1740,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1606580501911738
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4729548601097136}
+  - component: {fileID: 61716133387409978}
+  m_Layer: 0
+  m_Name: ground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1608628503006270
 GameObject:
   m_ObjectHideFlags: 1
@@ -4520,6 +4536,19 @@ Transform:
   m_Father: {fileID: 4329378030103358}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4729548601097136
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606580501911738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4894404652636720}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4731245301314258
 Transform:
   m_ObjectHideFlags: 1
@@ -5004,6 +5033,7 @@ Transform:
   - {fileID: 4413088279154660}
   - {fileID: 4492485481611416}
   - {fileID: 4927834942054382}
+  - {fileID: 4729548601097136}
   m_Father: {fileID: 4746716959593824}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6091,6 +6121,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8009074, y: 0.2922629}
   m_EdgeRadius: 0
+--- !u!61 &61716133387409978
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606580501911738}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 70.148476, y: 0.17228997}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 164.45274, y: 0.65542006}
+  m_EdgeRadius: 0
 --- !u!61 &61727447743846824
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -6926,10 +6981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9b1cf13b0503f4faeffacdf748d12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mAnimator: {fileID: 0}
-  EffectTime: 5
-  WeakTime: 0.2
-  item: 0
+  mType: 1
+  mKillerType: 1
+  areaX: 5
 --- !u!114 &114116569858170672
 MonoBehaviour:
   m_ObjectHideFlags: 1

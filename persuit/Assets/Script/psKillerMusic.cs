@@ -9,25 +9,36 @@ public class psKillerMusic : MonoBehaviour {
 	void Start () {
         if (mType == HeaderProto.PKillerType.PKillerTypeMusic)
         {
-            GetComponent<SpriteRenderer>().sprite = psGlobalDatabase.Ins.music_sprite[Random.Range(0, psGlobalDatabase.Ins.music_sprite.Length)];
+            transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = psGlobalDatabase.Ins.music_sprite[Random.Range(0, psGlobalDatabase.Ins.music_sprite.Length)];
         }
         else {
-            GetComponent<SpriteRenderer>().sprite = psGlobalDatabase.Ins.monster_bullet;
+            transform.Find("sprite").GetComponent<SpriteRenderer>().sprite = psGlobalDatabase.Ins.monster_bullet;
         }
 	}
 	
     // Update is called once per frame
 	void Update () {
-        transform.position -= new Vector3(0,0.1f,0);
-        float targetX = Mathf.Lerp(transform.position.x,psGlobalDatabase.Ins.mainChar.transform.position.x, 0.02f);
-        transform.position = new Vector3(targetX,transform.position.y,transform.position.z);
+        //transform.position -= new Vector3(0,0.1f,0);
+        float targetX = psGlobalDatabase.Ins.mainChar.transform.position.x;
+        targetX = targetX > transform.position.x ? 0.05f : -0.05f;
+        transform.position += new Vector3(targetX,0,0);
         if(transform.position.y < -30.0f)
             Destroy(gameObject);
 	}
     void OnCollisionEnter2D(Collision2D collision) {
-        Destroy(gameObject);
+        string objname = collision.gameObject.name;
+        StartCoroutine(OnBoom());
+        if (objname == "MainCharacter(Clone)") {
+            psGlobalDatabase.Ins.mainChar.OnDead();
+        }
+        else if (objname == "platform") { 
+        }
     }
-    void OnTriggerEnter2D(Collider2D other) {
+
+    IEnumerator OnBoom() {
+        transform.Find("sprite").gameObject.SetActive(false);
+        transform.Find("effect").gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
         Destroy(gameObject);
     }
 
