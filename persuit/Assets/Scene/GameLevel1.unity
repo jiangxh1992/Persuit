@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1206567951
+--- !u!1001 &118287584
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -155,6 +155,16 @@ Prefab:
     - target: {fileID: 1760703331302086, guid: afa00168938753f41bcaa85881587c2a, type: 2}
       propertyPath: m_Name
       value: guanqia1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114189637543280170, guid: afa00168938753f41bcaa85881587c2a,
+        type: 2}
+      propertyPath: speed
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 212433568928396042, guid: afa00168938753f41bcaa85881587c2a,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa00168938753f41bcaa85881587c2a, type: 2}
