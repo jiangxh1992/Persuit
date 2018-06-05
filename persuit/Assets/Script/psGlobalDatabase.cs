@@ -20,6 +20,7 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public bool isBlocked = false; // 是否被阻挡
     public bool isGameStart = false; // 游戏开始
     public bool isFistLogin = true; // 是否第一次进入主页面
+    public bool isReachBossArea = false;
 
     public string curLevel = "Wellcome"; // 当前场景
     public Camera MainCamera = null;

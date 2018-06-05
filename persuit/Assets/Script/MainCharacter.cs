@@ -82,6 +82,11 @@ public class MainCharacter : MonoBehaviour
         {
             OnDead();
         }
+        else if (colliderName == "bossArea" && psGlobalDatabase.Ins.curLevel == "GameLevel3") {
+            psGlobalDatabase.Ins.isReachBossArea = true;
+            psGameLevelManager.Ins.gameObject.GetComponent<AudioSource>().clip = psGameLevelManager.Ins.boosClipBg;
+            psGameLevelManager.Ins.gameObject.GetComponent<AudioSource>().Play();
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {

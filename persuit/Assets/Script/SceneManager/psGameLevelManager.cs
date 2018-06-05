@@ -11,6 +11,7 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     public float MoveSpeed = 5.0f;
     public float UpForce = 500.0f;
     public Camera gameCamera = null;
+    public AudioClip boosClipBg = null;
 
     int curItem = 0;
     public GameObject[] dialogs = new GameObject[2];
@@ -19,6 +20,10 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
 	void Start () {
         psGlobalDatabase.Ins.isInFinalArea = false;
         psUIRootManager.Ins.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+        if (psGlobalDatabase.Ins.isReachBossArea) {
+            MainCharInitPos = new Vector3(-32.0f, -9.0f, 1.0f);
+            gameCamera.transform.position = MainCharInitPos;
+        }
         InitUI();
         CreateMainChar();
         InitUIEvent();
@@ -42,7 +47,6 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
                 else if(name.Length >= 12 && name.Substring(0,11) == "grass_bible"){
                     curItem = int.Parse(name.Substring(11, name.Length - 11));
                     GameObject item = hit.transform.Find("item").gameObject;
-                    hit.transform.Find("effect").gameObject.SetActive(true);
                     iTween.MoveTo(item, new Vector3(item.transform.position.x, item.transform.position.y + 3.0f, item.transform.position.z), 2.0f);
                 }
                 else if (name.Length >= 4 && name == "item") {

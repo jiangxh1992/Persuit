@@ -91,12 +91,13 @@ public class psNpcManager : MonoBehaviour{
         yield return new WaitForSeconds(3.0f);
         isAttack = true;
         mAnimator.Play("attack");
+        float delay = (mType == HeaderProto.PNpcType.PNpcTypeAttack) ? 1.5f : 2.0f;
         while (isAttack) {
             GameObject music = psGameLevelManager.Ins.CreateMusicBullet(mKillerType);
             music.transform.parent = this.transform;
             music.transform.localPosition = new Vector3(0,-1.0f,0);
             music.SetActive(true);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(delay);
         }
         yield return 0;
     }
@@ -120,7 +121,8 @@ public class psNpcManager : MonoBehaviour{
                     mAnimator.Play("idle");
                     tarPos = initPos;
                     psUIRootManager.Ins.npcChatBtn.SetActive(true);
-                    psUIRootManager.Ins.gameText.GetComponent<Text>().text = "Congratulations!";
+                    psUIRootManager.Ins.gameText.GetComponent<Text>().text = "";
+                    psUIRootManager.Ins.GameUI.transform.Find("TopUI/win").gameObject.SetActive(true);
                 }
             }
         }

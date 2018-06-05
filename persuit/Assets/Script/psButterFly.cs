@@ -18,6 +18,7 @@ public class psButterFly : MonoBehaviour {
         //top = transform.position.y + top;
 
         tarPos = new Vector3(Random.Range(left, right), Random.Range(bottom, top), initZ);
+        ChangeDirection();
         //iTween.MoveTo(gameObject, tarPos, 10.0f);
         StartCoroutine(RandomTarPos());
 	}
@@ -34,10 +35,20 @@ public class psButterFly : MonoBehaviour {
             if (Random.Range(0, 1.0f) > 0.5) {
                 Vector3 cameraPos = psGameLevelManager.Ins.gameCamera.transform.position;
                 tarPos = new Vector3(Random.Range(cameraPos.x - left, cameraPos.x + right), Random.Range(cameraPos.y - bottom, cameraPos.y + top), initZ);
-                //iTween.MoveTo(gameObject, tarPos, 15.0f);
+                ChangeDirection();
             }
             yield return new WaitForSeconds(3.0f);
         }
         yield return 0;
+    }
+
+    void ChangeDirection() {
+        if (tarPos.x > transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+        else {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        }
     }
 }
