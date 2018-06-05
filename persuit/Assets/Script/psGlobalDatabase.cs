@@ -27,6 +27,8 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
     public psNpcManager curNpc = null;
     public Sprite[] music_sprite;
     public Sprite monster_bullet = null;
+
+    bool isTurn = false;
 	// Use this for initialization
 	void Start () {
         // 跳
@@ -47,7 +49,13 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
             mMoveDir = -1;
             mainChar.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             mainChar.mRigidbody.velocity = Vector2.zero;
-            mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
+            if (mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
+            {
+                isTurn = true;
+            }
+            else {
+                mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
+            }
         };
         // right
         InputEventControlller.Ins.OnRightDown += () =>
@@ -56,18 +64,34 @@ public class psGlobalDatabase : Singleton<psGlobalDatabase> {
             mMoveDir = 1;
             mainChar.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             mainChar.mRigidbody.velocity = Vector2.zero;
-            mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
+            if (mainChar.mStateManager.mCurState == HeaderProto.PCharState.PCharStateRun)
+            {
+                isTurn = true;
+            }
+            else
+            {
+                mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateRun);
+            }
         };
         // 按键松开
         InputEventControlller.Ins.OnLeftUp += () =>
         {
             if (!isGameStart) return;
+            if (isTurn) {
+                isTurn = false;
+                return;
+            }
             mMoveDir = 0;
             mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };
         InputEventControlller.Ins.OnRightUp += () =>
         {
             if (!isGameStart) return;
+            if (isTurn)
+            {
+                isTurn = false;
+                return;
+            }
             mMoveDir = 0;
             mainChar.mStateManager.ChangeState(HeaderProto.PCharState.PCharStateIdle);
         };

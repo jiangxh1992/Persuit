@@ -69,5 +69,6 @@ public class psUIRootManager : Singleton<psUIRootManager> {
         stopPnl.SetActive(false);
         toolPnl.SetActive(false);
         ProgressUI.SetActive(false);
+        GameUI.transform.Find("TopUI/win").gameObject.SetActive(false);
     }
 }
