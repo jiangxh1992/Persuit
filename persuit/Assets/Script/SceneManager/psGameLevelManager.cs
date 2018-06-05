@@ -210,7 +210,8 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     IEnumerator GameOver() {
         yield return new WaitForSeconds(1.0f);
         psGlobalDatabase.Ins.ResetMainChar();
-        psUIRootManager.Ins.gameoverPnl.SetActive(true);
+        psUIRootManager.Ins.GameUI.transform.Find("TopUI/win").gameObject.SetActive(true);
+        psUIRootManager.Ins.gameoverPnl.SetActive(false);
         yield return 0;
     }
 }

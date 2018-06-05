@@ -110,7 +110,7 @@ public class psNpcManager : MonoBehaviour{
         {
             if (Random.Range(0, 1.0f) > 0.7)
             {
-                tarPos = new Vector3(Random.Range(initPos.x - areaX, initPos.x + areaX), Random.Range(initPos.y - areaY/2, initPos.y + areaY), initPos.z);
+                tarPos = new Vector3(psGlobalDatabase.Ins.mainChar.transform.position.x, Random.Range(initPos.y - areaY/2, initPos.y + areaY), initPos.z);
             }
             yield return new WaitForSeconds(1.0f);
             if (mType == HeaderProto.PNpcType.PNpcTypeAttack) {

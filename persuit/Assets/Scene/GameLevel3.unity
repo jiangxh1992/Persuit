@@ -177,6 +177,11 @@ Prefab:
       propertyPath: gameCamera
       value: 
       objectReference: {fileID: 1877058909}
+    - target: {fileID: 114389419918836696, guid: e00210e69f8a8434c9408d36a626515b,
+        type: 2}
+      propertyPath: boosClipBg
+      value: 
+      objectReference: {fileID: 8300000, guid: 586b725d854c1bc43b97a8376139b146, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e00210e69f8a8434c9408d36a626515b, type: 2}
   m_IsPrefabParent: 0
