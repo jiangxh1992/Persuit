@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class psWellComeManager : MonoBehaviour {
-    float duration = 6.0f;
+    float duration = 10.0f;
     public Transform text = null;
     public float scrollSpeed = 50.0f;
     bool isMaskingShow = true;

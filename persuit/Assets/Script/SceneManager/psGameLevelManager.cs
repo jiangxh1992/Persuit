@@ -16,6 +16,9 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
     int curItem = 0;
     public GameObject[] dialogs = new GameObject[2];
     GameObject killer_music = null;
+    
+    GameObject curMoveObject = null;
+    Vector3 desScreenPosition = Vector3.zero;
 
 	void Start () {
         psGlobalDatabase.Ins.isInFinalArea = false;
@@ -50,11 +53,18 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
                     iTween.MoveTo(item, new Vector3(item.transform.position.x, item.transform.position.y + 3.0f, item.transform.position.z), 2.0f);
                 }
                 else if (name.Length >= 4 && name == "item") {
-                    Vector3 des = gameCamera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").position);
-                    iTween.MoveTo(hit.transform.gameObject,des,3.0f);
+                    desScreenPosition = psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").position;
+                    curMoveObject = hit.transform.gameObject;
                     StartCoroutine(BileCollect(hit.transform.gameObject));
                 }
             }
+        }
+
+        if (curMoveObject != null) {
+            Vector3 des = gameCamera.ScreenToWorldPoint(desScreenPosition);
+            Vector3 dis = des - curMoveObject.transform.position;
+            if(dis.sqrMagnitude < 0.5f) return;
+            curMoveObject.transform.position += dis.normalized / 5.0f;
         }
     }
 
@@ -96,8 +106,9 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         psUIRootManager.Ins.toolPnl.SetActive(!psUIRootManager.Ins.toolPnl.activeSelf);
     }
     IEnumerator BileCollect(GameObject item) {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.0f);
         Destroy(item);
+        curMoveObject = null;
         StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/bible").gameObject));
         yield return new WaitForSeconds(0.6f);
         OpenBible();
@@ -110,10 +121,11 @@ public class psGameLevelManager : Singleton<psGameLevelManager> {
         CloseNpcDialog();
         yield return new WaitForSeconds(0.5f);
         item.SetActive(true);
-        Vector3 des = gameCamera.ScreenToWorldPoint(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").position);
-        iTween.MoveTo(item, des, 3.0f);
+        curMoveObject = item;
+        desScreenPosition = psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").position;
         yield return new WaitForSeconds(2.5f);
         Destroy(item);
+        curMoveObject = null;
         StartCoroutine(BlinkObj(psUIRootManager.Ins.GameUI.transform.Find("TopUI/diamond").gameObject));
         yield return new WaitForSeconds(0.6f);
         OpenTool();

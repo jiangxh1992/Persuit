@@ -57,10 +57,10 @@ uv.y = 1-uv.y;
 float4 txt = tex2D(_MainTex,uv);
 
 uv.y+= 0.2;
-uv.x+=_Time*2;
+uv.x+=_TimeX*0.2;
 float4 txt2 = tex2D(_MainTex2,frac(uv));
 
-uv.x+=_Time*2;
+uv.x+=_TimeX*0.2;
 uv/=1.5;
 float4 txt3 = tex2D(_MainTex2,frac(uv));
 

@@ -7,6 +7,7 @@ public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
     public Shader SCShader;
     private Material SCMaterial;
     private Texture2D Texture2;
+    private float TimeX = 1.0f;
     [Range(0,1.0f)]
     public float _FogIntensity = 0.3f;
 
@@ -39,9 +40,9 @@ public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
     {
         if (SCShader != null)
         {
-           // TimeX += Time.deltaTime;
-          //  if (TimeX > 100) TimeX = 0;
-          //  material.SetFloat("_TimeX", TimeX);
+            TimeX += Time.deltaTime;
+            if (TimeX > 100) TimeX = 0;
+            material.SetFloat("_TimeX", TimeX);
             material.SetTexture("_MainTex2", Texture2);
             material.SetFloat("_FogIntensity", _FogIntensity);
             Graphics.Blit(sourceTexture, destTexture, material);
